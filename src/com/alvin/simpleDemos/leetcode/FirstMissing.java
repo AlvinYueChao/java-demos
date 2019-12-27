@@ -1,10 +1,7 @@
-package com.alvin.simpleDemos.algorithm;
-
-import com.sun.deploy.util.ArrayUtil;
+package com.alvin.simpleDemos.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 
 public class FirstMissing {
     public static void main(String[] args) {
