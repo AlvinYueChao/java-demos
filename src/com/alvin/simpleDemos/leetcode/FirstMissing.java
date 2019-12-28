@@ -3,6 +3,9 @@ package com.alvin.simpleDemos.leetcode;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * LeetCode 41
+ */
 public class FirstMissing {
     public static void main(String[] args) {
         FirstMissing firstMissing = new FirstMissing();

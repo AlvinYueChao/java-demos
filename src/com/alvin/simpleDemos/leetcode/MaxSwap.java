@@ -2,6 +2,9 @@ package com.alvin.simpleDemos.leetcode;
 
 import java.util.Arrays;
 
+/**
+ * LeetCode 670
+ */
 public class MaxSwap {
     public static void main(String[] args) {
         MaxSwap instance = new MaxSwap();
