@@ -1,4 +1,4 @@
-package com.alvin.simpleDemos.leetcode;
+package com.alvin.simpleDemos.algorithm;
 
 /**
  * LeetCode 2

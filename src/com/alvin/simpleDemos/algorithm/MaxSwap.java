@@ -1,4 +1,4 @@
-package com.alvin.simpleDemos.leetcode;
+package com.alvin.simpleDemos.algorithm;
 
 import java.util.Arrays;
 

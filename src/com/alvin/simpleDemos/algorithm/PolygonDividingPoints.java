@@ -1,4 +1,4 @@
-package com.alvin.simpleDemos.leetcode;
+package com.alvin.simpleDemos.algorithm;
 
 public class PolygonDividingPoints {
     public static void main(String[] args) {
