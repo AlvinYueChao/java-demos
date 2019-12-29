@@ -14,39 +14,25 @@ public class FirstMissing {
     }
 
     public int firstMissingPositive(int[] nums) {
-        if(nums == null || nums.length == 0){
-            return 1;
+        int numOfOpposite = 0;
+        for (int num : nums) {
+            numOfOpposite = num > 0 ? numOfOpposite + 1 : numOfOpposite;
         }
 
-        Arrays.sort(nums);
+        boolean[] tags = new boolean[numOfOpposite + 1];
 
-        int gsp = 0;
-        for(int i = 0; i < nums.length - 1; i++){
-            gsp += nums[i + 1] - nums[i];
-        }
-
-        if(nums[0] > 1){
-            return 1;
-        }
-        else if(nums[nums.length - 1] < 1){
-            return 1;
-        }
-        else{
-            if(gsp > nums.length - 1){
-                ArrayList<Integer> arrs = new ArrayList<>();
-                for (int num : nums) {
-                    arrs.add(num);
-                }
-                for(int i = 1; i < nums[nums.length - 1]; i++){
-                    if(!arrs.contains(i)){
-                        return i;
-                    }
-                }
-                return 1;
-            }
-            else{
-                return nums[nums.length - 1] + 1;
+        for (int num : nums) {
+            if (num > 0 && num < numOfOpposite + 1) {
+                tags[num] = true;
             }
         }
+
+        int result = 1;
+        for(int i = 1; i < tags.length; i++){
+            if(!tags[i]){
+                return i;
+            }
+        }
+        return numOfOpposite + 1;
     }
 }
