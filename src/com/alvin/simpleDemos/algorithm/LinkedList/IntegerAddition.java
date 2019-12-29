@@ -1,4 +1,4 @@
-package com.alvin.simpleDemos.algorithm;
+package com.alvin.simpleDemos.algorithm.LinkedList;
 
 /**
  * LeetCode 2
@@ -101,11 +101,3 @@ public class IntegerAddition {
     }
 }
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-}
