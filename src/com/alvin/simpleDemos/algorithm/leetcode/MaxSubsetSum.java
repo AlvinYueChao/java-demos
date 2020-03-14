@@ -1,4 +1,4 @@
-package com.alvin.simpleDemos.algorithm;
+package com.alvin.simpleDemos.algorithm.leetcode;
 
 public class MaxSubsetSum {
     public static void main(String[] args) {

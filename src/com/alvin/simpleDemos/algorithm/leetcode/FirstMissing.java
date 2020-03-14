@@ -1,7 +1,4 @@
-package com.alvin.simpleDemos.algorithm;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+package com.alvin.simpleDemos.algorithm.leetcode;
 
 /**
  * LeetCode 41

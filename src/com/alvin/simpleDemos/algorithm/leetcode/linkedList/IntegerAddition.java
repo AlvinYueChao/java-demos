@@ -1,4 +1,4 @@
-package com.alvin.simpleDemos.algorithm.LinkedList;
+package com.alvin.simpleDemos.algorithm.leetcode.linkedList;
 
 /**
  * LeetCode 2

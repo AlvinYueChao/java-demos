@@ -1,4 +1,4 @@
-package com.alvin.simpleDemos.algorithm;
+package com.alvin.simpleDemos.algorithm.leetcode;
 
 import java.util.Scanner;
 
