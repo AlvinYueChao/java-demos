@@ -10,6 +10,7 @@ public class BubbleSort {
     }
 
     private static void bubbleSort(int[] list) {
+        // 不断将相邻两数中较大的数向右移，直到沉底
         for (int x = list.length - 1; x > 0; x--) {
             for (int i = 0; i < x; i++) {
                 if (list[i] > list[i + 1]) {
