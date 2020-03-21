@@ -2,6 +2,9 @@ package com.alvin.simpleDemos.algorithm.leetcode;
 
 import java.util.*;
 
+/**
+ * leetcode 365
+ */
 public class CanMeasureWater {
     public static void main(String[] args) {
         int x = 1, y = 2, z = 3;
