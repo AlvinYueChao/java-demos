@@ -1,4 +1,4 @@
-package com.alvin.simpleDemos.algorithm.leetcode.linkedList;
+package com.alvin.simpleDemos.algorithm.leetcode.linkedlist;
 
 public class DeleteDuplicateNode {
     public static void main(String[] args) {
