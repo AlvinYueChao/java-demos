@@ -4,7 +4,6 @@ import java.util.*;
 
 /**
  * leetcode 945
- * 当数组 A 数量较多时，超出时间限制，待改进
  */
 public class MinIncrementForUnique {
     public static void main(String[] args) {
@@ -13,63 +12,36 @@ public class MinIncrementForUnique {
         int stepCount = minIncrementForUnique(A);
         long end = System.currentTimeMillis();
         System.out.println("步数: " + stepCount + " ,消耗时间: " + (end - start) + " 毫秒");
-        // 步数: 11760 ,消耗时间: 109 毫秒
     }
 
     private static int minIncrementForUnique(int[] A) {
-        Map<Integer, Integer> entryMap = new HashMap<>();
-        List<Map.Entry<Integer, Integer>> needHandleList = new ArrayList<>();
-        for (int num : A) {
-            createOrAdd(entryMap, needHandleList, num);
+        int[] countOfItems = new int[80000];
+        for (int number : A) {
+            countOfItems[number]++;
         }
 
+        int minIndex = 0;
+        int dupTimes = 0;
+
+        for (int i = 0; i < 80000; i++) {
+            if (countOfItems[i] != 0) {
+                minIndex = i;
+                break;
+            }
+        }
 
         int stepCount = 0;
-        while (!needHandleList.isEmpty()) {
-            Map.Entry<Integer, Integer> currentEntry = needHandleList.get(0);
-            while (currentEntry.getValue() > 1) {
-                remove(entryMap, needHandleList, currentEntry.getKey());
-                createOrAdd(entryMap, needHandleList, currentEntry.getKey() + 1);
-                // 当前元素计数值减一
-                currentEntry.setValue(currentEntry.getValue() - 1);
-                stepCount++;
+        for (int i = minIndex; i < 80000; i++) {
+            if (countOfItems[i] > 1) {
+                dupTimes += (countOfItems[i] - 1);
+                stepCount -= i * (countOfItems[i] - 1);
+            }
+            else if (dupTimes > 0 && countOfItems[i] == 0) {
+                dupTimes--;
+                stepCount += i;
             }
         }
 
         return stepCount;
-    }
-
-    private static void createOrAdd(Map<Integer, Integer> entryMap, List<Map.Entry<Integer, Integer>> needHandleList, int value) {
-        if (entryMap.containsKey(value)) {
-            Integer currentCount = entryMap.get(value);
-            Integer newCount = currentCount + 1;
-            // 移除旧状态
-            entryMap.remove(value, currentCount);
-            entryMap.put(value, newCount);
-            // 移除旧状态
-            needHandleList.remove(new AbstractMap.SimpleEntry<>(value, currentCount));
-            needHandleList.add(new AbstractMap.SimpleEntry<>(value, newCount));
-            needHandleList.sort(Map.Entry.comparingByKey());
-        }
-        else {
-            entryMap.put(value, 1);
-        }
-    }
-
-    private static void remove(Map<Integer, Integer> entryMap, List<Map.Entry<Integer, Integer>> needHandleList, int value) {
-        if (entryMap.containsKey(value)) {
-            Integer currentCount = entryMap.get(value);
-            int newCount = currentCount - 1;
-            // 移除旧状态
-            entryMap.remove(value, currentCount);
-            entryMap.put(value, newCount);
-            // 移除旧状态
-            needHandleList.remove(new AbstractMap.SimpleEntry<>(value, currentCount));
-            needHandleList.add(new AbstractMap.SimpleEntry<>(value, newCount));
-            needHandleList.sort(Map.Entry.comparingByKey());
-            if (newCount == 1) {
-                needHandleList.remove(new AbstractMap.SimpleEntry<>(value, 1));
-            }
-        }
     }
 }
