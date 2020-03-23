@@ -1,7 +1,6 @@
 package com.alvin.simpleDemos.algorithm.leetcode;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * leetcode 945
@@ -14,14 +13,14 @@ public class MinIncrementForUnique {
         int stepCount = minIncrementForUnique(A);
         long end = System.currentTimeMillis();
         System.out.println("步数: " + stepCount + " ,消耗时间: " + (end - start) + " 毫秒");
-        // 步数: 11760 ,消耗时间: 813 毫秒
+        // 步数: 11760 ,消耗时间: 109 毫秒
     }
 
     private static int minIncrementForUnique(int[] A) {
-        Set<Map.Entry<Integer, Integer>> entrySet = new HashSet<>();
+        Map<Integer, Integer> entryMap = new HashMap<>();
         List<Map.Entry<Integer, Integer>> needHandleList = new ArrayList<>();
         for (int num : A) {
-            createOrAdd(entrySet, needHandleList, num);
+            createOrAdd(entryMap, needHandleList, num);
         }
 
 
@@ -29,8 +28,8 @@ public class MinIncrementForUnique {
         while (!needHandleList.isEmpty()) {
             Map.Entry<Integer, Integer> currentEntry = needHandleList.get(0);
             while (currentEntry.getValue() > 1) {
-                remove(entrySet, needHandleList, currentEntry.getKey());
-                createOrAdd(entrySet, needHandleList, currentEntry.getKey() + 1);
+                remove(entryMap, needHandleList, currentEntry.getKey());
+                createOrAdd(entryMap, needHandleList, currentEntry.getKey() + 1);
                 // 当前元素计数值减一
                 currentEntry.setValue(currentEntry.getValue() - 1);
                 stepCount++;
@@ -40,32 +39,32 @@ public class MinIncrementForUnique {
         return stepCount;
     }
 
-    private static void createOrAdd(Set<Map.Entry<Integer, Integer>> entrySet, List<Map.Entry<Integer, Integer>> needHandleList, int value) {
-        Map<Integer, Integer> allValueMap = entrySet.stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        if (allValueMap.containsKey(value)) {
-            Integer newCount = allValueMap.get(value) + 1;
+    private static void createOrAdd(Map<Integer, Integer> entryMap, List<Map.Entry<Integer, Integer>> needHandleList, int value) {
+        if (entryMap.containsKey(value)) {
+            Integer currentCount = entryMap.get(value);
+            Integer newCount = currentCount + 1;
             // 移除旧状态
-            entrySet.remove(new AbstractMap.SimpleEntry<>(value, allValueMap.get(value)));
-            entrySet.add(new AbstractMap.SimpleEntry<>(value, newCount));
+            entryMap.remove(value, currentCount);
+            entryMap.put(value, newCount);
             // 移除旧状态
-            needHandleList.remove(new AbstractMap.SimpleEntry<>(value, allValueMap.get(value)));
+            needHandleList.remove(new AbstractMap.SimpleEntry<>(value, currentCount));
             needHandleList.add(new AbstractMap.SimpleEntry<>(value, newCount));
             needHandleList.sort(Map.Entry.comparingByKey());
         }
         else {
-            entrySet.add(new AbstractMap.SimpleEntry<>(value, 1));
+            entryMap.put(value, 1);
         }
     }
 
-    private static void remove(Set<Map.Entry<Integer, Integer>> entrySet, List<Map.Entry<Integer, Integer>> needHandleList, int value) {
-        Map<Integer, Integer> allValueMap = entrySet.stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        if (allValueMap.containsKey(value)) {
-            int newCount = allValueMap.get(value) - 1;
+    private static void remove(Map<Integer, Integer> entryMap, List<Map.Entry<Integer, Integer>> needHandleList, int value) {
+        if (entryMap.containsKey(value)) {
+            Integer currentCount = entryMap.get(value);
+            int newCount = currentCount - 1;
             // 移除旧状态
-            entrySet.remove(new AbstractMap.SimpleEntry<>(value, allValueMap.get(value)));
-            entrySet.add(new AbstractMap.SimpleEntry<>(value, newCount));
+            entryMap.remove(value, currentCount);
+            entryMap.put(value, newCount);
             // 移除旧状态
-            needHandleList.remove(new AbstractMap.SimpleEntry<>(value, allValueMap.get(value)));
+            needHandleList.remove(new AbstractMap.SimpleEntry<>(value, currentCount));
             needHandleList.add(new AbstractMap.SimpleEntry<>(value, newCount));
             needHandleList.sort(Map.Entry.comparingByKey());
             if (newCount == 1) {
