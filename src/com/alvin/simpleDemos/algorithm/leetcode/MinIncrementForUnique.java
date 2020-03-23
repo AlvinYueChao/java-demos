@@ -1,7 +1,5 @@
 package com.alvin.simpleDemos.algorithm.leetcode;
 
-import java.util.*;
-
 /**
  * leetcode 945
  */
