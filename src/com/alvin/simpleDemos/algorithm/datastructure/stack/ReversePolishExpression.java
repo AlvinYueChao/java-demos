@@ -16,40 +16,36 @@ public class ReversePolishExpression {
         int result = 0;
         Stack<Integer> numbers = new Stack<>();
         for (String item : exp) {
+            int first, second;
             switch (item) {
-                case "+": {
-                    int second = numbers.pop();
-                    int first = numbers.pop();
+                case "+":
+                    second = numbers.pop();
+                    first = numbers.pop();
                     result = first + second;
                     numbers.push(result);
                     break;
-                }
-                case "-": {
-                    int second = numbers.pop();
-                    int first = numbers.pop();
+                case "-":
+                    second = numbers.pop();
+                    first = numbers.pop();
                     result = first - second;
                     numbers.push(result);
                     break;
-                }
-                case "*": {
-                    int second = numbers.pop();
-                    int first = numbers.pop();
+                case "*":
+                    second = numbers.pop();
+                    first = numbers.pop();
                     result = first * second;
                     numbers.push(result);
                     break;
-                }
-                case "/": {
-                    int second = numbers.pop();
-                    int first = numbers.pop();
+                case "/":
+                    second = numbers.pop();
+                    first = numbers.pop();
                     result = first / second;
                     numbers.push(result);
                     break;
-                }
-                default: {
+                default:
                     int number = Integer.parseInt(item);
                     numbers.push(number);
                     break;
-                }
             }
         }
         return numbers.pop();
