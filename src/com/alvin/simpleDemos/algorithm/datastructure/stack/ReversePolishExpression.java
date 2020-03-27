@@ -2,7 +2,7 @@ package com.alvin.simpleDemos.algorithm.datastructure.stack;
 
 import java.util.Stack;
 
-public class ReversePolishNotation {
+public class ReversePolishExpression {
     public static void main(String[] args) {
         String[] exp1 = {"10", "20", "5", "+", "*", "2", "/", "5", "-"};
         System.out.println("result: " + getResult(exp1));
