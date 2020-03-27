@@ -1,4 +1,6 @@
-package com.alvin.simpleDemos.algorithm.datastructure;
+package com.alvin.simpleDemos.algorithm.datastructure.stack;
+
+import java.util.Stack;
 
 public class BracketMatch {
     public static void main(String[] args) {
@@ -18,6 +20,15 @@ public class BracketMatch {
     }
 
     private static boolean bracketMatch(String str) {
+//        return simpleImplement(str);
+        return stackImplement(str);
+    }
+
+    private static boolean simpleImplement(String str) {
+        if (str == null || str.length() == 0) {
+            return false;
+        }
+
         int leftBracketCount = 0;
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == '(') {
@@ -32,5 +43,29 @@ public class BracketMatch {
             }
         }
         return leftBracketCount == 0;
+    }
+
+    private static boolean stackImplement(String str) {
+        if (str == null || str.length() == 0) {
+            return false;
+        }
+
+        Stack<Character> bracketStack = new Stack<>();
+        boolean isMatched = true;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '(') {
+                bracketStack.push(str.charAt(i));
+            }
+            else if (str.charAt(i) == ')') {
+                if (bracketStack.isEmpty()) {
+                    isMatched = false;
+                    break;
+                }
+                else {
+                    bracketStack.pop();
+                }
+            }
+        }
+        return isMatched && bracketStack.isEmpty();
     }
 }
