@@ -45,7 +45,7 @@ public class FullGCProblem {
     private static class UserInfo {
         String name = "Alvin";
         int age = 18;
-        BigDecimal money = new BigDecimal("999999.99");
+        BigDecimal money = new BigDecimal(999999.99);
 
         public void user () {
             // todo
