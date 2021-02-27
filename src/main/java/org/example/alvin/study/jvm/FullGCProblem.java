@@ -39,6 +39,7 @@ public class FullGCProblem {
             UserInfo userInfo = new UserInfo();
             userInfos.add(userInfo);
         }
+
         return userInfos;
     }
 
