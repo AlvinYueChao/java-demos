@@ -1,9 +1,10 @@
 # JavaDemos
 
-##Notes:
-###JVM
+## Notes:
 
-###Multiple Thread
+### JVM
+
+### Multiple Thread
 1. Slf4j + Log4j2 for Java 11 project
 
 **dependencies**
