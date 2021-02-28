@@ -1,35 +1,38 @@
 package org.example.alvin.study.multiplethread;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openjdk.jol.info.ClassLayout;
 
 /**
  * @author AlvinPower
  * @date 2021/2/24
  */
+@Slf4j
 public class ObjectHeaderTest {
     public static void main(String[] args) {
+
         Object obj_hash = new Object();
-        System.out.println(ClassLayout.parseInstance(obj_hash).toPrintable());
+        log.info(ClassLayout.parseInstance(obj_hash).toPrintable());
 
         Object obj_new = new Object();
-        System.out.println(Integer.toHexString(obj_new.hashCode()));
-        System.out.println(ClassLayout.parseInstance(obj_new).toPrintable());
+        log.info(Integer.toHexString(obj_new.hashCode()));
+        log.info(ClassLayout.parseInstance(obj_new).toPrintable());
 
         Object obj_biased = new Object();
         synchronized (obj_biased) {
-            System.out.println(ClassLayout.parseInstance(obj_biased).toPrintable());
+            log.info(ClassLayout.parseInstance(obj_biased).toPrintable());
         }
 
         Object obj_light = new Object();
-        System.out.println(Integer.toHexString(obj_light.hashCode()));
+        log.info(Integer.toHexString(obj_light.hashCode()));
         synchronized (obj_light) {
-            System.out.println(ClassLayout.parseInstance(obj_light).toPrintable());
+            log.info(ClassLayout.parseInstance(obj_light).toPrintable());
         }
 
         Object obj_weight = new Object();
         synchronized (obj_weight) {
-            System.out.println(Integer.toHexString(obj_weight.hashCode()));
-            System.out.println(ClassLayout.parseInstance(obj_weight).toPrintable());
+            log.info(Integer.toHexString(obj_weight.hashCode()));
+            log.info(ClassLayout.parseInstance(obj_weight).toPrintable());
         }
     }
 
