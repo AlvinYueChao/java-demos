@@ -5,9 +5,7 @@
 ### JVM
 
 ### Multiple Thread
-1. Slf4j + Log4j2 for Java 11 project
-
-**dependencies**
+**1. Slf4j + Log4j2 for Java 11 project**
 ```xml
 <dependencies>
     <!-- slf4j dependencies -->
