@@ -1,6 +1,7 @@
 package org.example.alvin.study.network.netty.echo;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2021/5/10
  */
 @Slf4j
+@Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
   @Override

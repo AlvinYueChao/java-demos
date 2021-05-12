@@ -45,6 +45,10 @@ public class EchoServer {
           .childHandler(new ChannelInitializer<SocketChannel>() {
             @Override
             protected void initChannel(SocketChannel socketChannel) {
+              /**
+               * 1. annotated the server handler with @Sharable
+               * 2. new handler every time when use it.
+               */
               socketChannel.pipeline().addLast(echoServerHandler);
             }
           });
