@@ -17,6 +17,7 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
   /**
    * 读取到网络数据之后，进行业务处理
+   * Handler 的实现，采用了责任链模式的思想。只需要考虑业务实现，无需考虑资源释放问题
    * @param channelHandlerContext
    * @param byteBuf
    */
