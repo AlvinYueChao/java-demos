@@ -36,7 +36,6 @@ public class EchoClient {
     try {
       // 服务器启动必备
       Bootstrap bootstrap = new Bootstrap();
-      final EchoClientHandler echoClientHandler = new EchoClientHandler();
       bootstrap
           .group(group) // 指定工作线程组
           .channel(NioSocketChannel.class)  // 指定通信模式采用NIO客户端模式
@@ -45,7 +44,7 @@ public class EchoClient {
               new ChannelInitializer<SocketChannel>() {  // 客户端作为请求发起者，所以使用handler而非childHandler
                 @Override
                 protected void initChannel(SocketChannel socketChannel) {
-                  socketChannel.pipeline().addLast(echoClientHandler);
+                  socketChannel.pipeline().addLast(new EchoClientHandler());
                 }
               });
       // 异步连接到服务器. sync() 会阻塞到绑定工作完全做完

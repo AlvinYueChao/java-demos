@@ -37,7 +37,6 @@ public class EchoServer {
     try {
       // 服务器启动必备
       ServerBootstrap bootstrap = new ServerBootstrap();
-      final EchoServerHandler echoServerHandler = new EchoServerHandler();
       bootstrap
           .group(group) // 指定工作线程组
           .channel(NioServerSocketChannel.class)  // 指定通信模式采用NIO服务端模式
@@ -49,7 +48,7 @@ public class EchoServer {
                * 1. annotated the server handler with @Sharable
                * 2. new handler every time when use it.
                */
-              socketChannel.pipeline().addLast(echoServerHandler);
+              socketChannel.pipeline().addLast(new EchoServerHandler());
             }
           });
       // 服务器异步绑定到指定端口. sync() 会阻塞到绑定工作完全做完
