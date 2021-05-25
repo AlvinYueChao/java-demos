@@ -1,21 +1,19 @@
-package org.example.alvin.study.network.netty.echo;
+package org.example.alvin.study.network.netty.splicing.demo;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.InetSocketAddress;
 
 /**
- * 作者：Mark/Maoke
+ * 作者：Mark
  * 创建日期：2018/08/26
- * 类说明：基于Netty的客户端
+ * 类说明：
  */
 public class EchoClient {
 
@@ -28,28 +26,21 @@ public class EchoClient {
     }
 
     public void start() throws InterruptedException {
-
-        /*线程组*/
-        EventLoopGroup group  = new NioEventLoopGroup();
+        EventLoopGroup group = new NioEventLoopGroup();/*线程组*/
         try {
-            /*客户端启动必备*/
-            Bootstrap b = new Bootstrap();
-            b.group(group)
-                    .channel(NioSocketChannel.class)/*指定使用NIO的通信模式*/
-
-                    .remoteAddress(new InetSocketAddress(host,port))/*指定服务器的IP地址和端口*/
+            final Bootstrap b = new Bootstrap();;/*客户端启动必须*/
+            b.group(group)/*将线程组传入*/
+                    .channel(NioSocketChannel.class)/*指定使用NIO进行网络传输*/
+                    .remoteAddress(new InetSocketAddress(host,port))/*配置要连接服务器的ip地址和端口*/
                     .handler(new ChannelInitializer<SocketChannel>() {
-                        @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(new EchoClientHandler());
-
                         }
                     });
-            ChannelFuture f = b.connect().sync();/*异步连接到服务器，sync()会阻塞到完成*/
-            f.channel().closeFuture().sync();/*阻塞当前线程，直到客户端的Channel被关闭*/
+            ChannelFuture f = b.connect().sync();
+            f.channel().closeFuture().sync();
         } finally {
             group.shutdownGracefully().sync();
-
         }
     }
 

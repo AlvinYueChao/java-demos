@@ -4,59 +4,59 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+
 import java.net.InetSocketAddress;
-import lombok.extern.slf4j.Slf4j;
 
 /**
- * @author AlvinPower
- * @date 2021/5/10
+ * 作者：Mark/Maoke
+ * 创建日期：2018/08/25
+ * 类说明：基于Netty的服务器
  */
-@Slf4j
-public class EchoServer {
+public class EchoServer  {
 
-  private final int port;
+    private final int port;
 
-  public EchoServer(int port) {
-    this.port = port;
-  }
-
-  public static void main(String[] args) throws InterruptedException {
-    int port = 8080;
-    EchoServer echoServer = new EchoServer(port);
-    log.info("服务器即将启动");
-    echoServer.start();
-    log.info("服务器关闭");
-  }
-
-  private void start() throws InterruptedException {
-    // 线程组
-    EventLoopGroup group = new NioEventLoopGroup();
-    try {
-      // 服务器启动必备
-      ServerBootstrap bootstrap = new ServerBootstrap();
-      bootstrap
-          .group(group) // 指定工作线程组
-          .channel(NioServerSocketChannel.class)  // 指定通信模式采用NIO服务端模式
-          .localAddress(new InetSocketAddress(this.port))  // 指定监听端口
-          .childHandler(new ChannelInitializer<SocketChannel>() {
-            @Override
-            protected void initChannel(SocketChannel socketChannel) {
-              /**
-               * 1. annotated the server handler with @Sharable
-               * 2. new handler every time when use it.
-               */
-              socketChannel.pipeline().addLast(new EchoServerHandler());
-            }
-          });
-      // 服务器异步绑定到指定端口. sync() 会阻塞到绑定工作完全做完
-      ChannelFuture bindingResult = bootstrap.bind().sync();
-      // 阻塞当前线程，直到服务器的 Channel 被关闭
-      bindingResult.channel().closeFuture().sync();
-    } finally {
-      group.shutdownGracefully().sync();
+    public EchoServer(int port) {
+        this.port = port;
     }
-  }
+
+    public static void main(String[] args) throws InterruptedException {
+        int port = 9999;
+        EchoServer echoServer = new EchoServer(port);
+        System.out.println("服务器即将启动");
+        echoServer.start();
+        System.out.println("服务器关闭");
+    }
+
+    public void start() throws InterruptedException {
+        final EchoServerHandler serverHandler = new EchoServerHandler();
+        /*线程组*/
+        EventLoopGroup group  = new NioEventLoopGroup();
+        try {
+            /*服务端启动必备*/
+            ServerBootstrap b = new ServerBootstrap();
+            b.group(group)
+                    .channel(NioServerSocketChannel.class)/*指定使用NIO的通信模式*/
+            .localAddress(new InetSocketAddress(port))/*指定监听端口*/
+            .childHandler(new ChannelInitializer<SocketChannel>() {
+                @Override
+                protected void initChannel(SocketChannel ch) throws Exception {
+                    ch.pipeline().addLast(serverHandler);
+                }
+            });
+            ChannelFuture f = b.bind().sync();/*异步绑定到服务器，sync()会阻塞到完成*/
+            f.channel().closeFuture().sync();/*阻塞当前线程，直到服务器的ServerChannel被关闭*/
+        } finally {
+            group.shutdownGracefully().sync();
+
+        }
+
+
+    }
+
+
 }

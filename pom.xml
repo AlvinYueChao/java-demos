@@ -13,6 +13,7 @@
     <java.version>8</java.version>
     <log4j2.version>2.13.2</log4j2.version>
     <jmh.version>1.27</jmh.version>
+    <rocketmq.version>4.8.0</rocketmq.version>
   </properties>
 
   <dependencies>
@@ -60,6 +61,22 @@
       <groupId>io.netty</groupId>
       <artifactId>netty-all</artifactId>
       <version>4.1.63.Final</version>
+    </dependency>
+    <!-- rocketmq -->
+    <dependency>
+      <groupId>org.apache.rocketmq</groupId>
+      <artifactId>rocketmq-acl</artifactId>
+      <version>${rocketmq.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.rocketmq</groupId>
+      <artifactId>rocketmq-client</artifactId>
+      <version>${rocketmq.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.rocketmq</groupId>
+      <artifactId>rocketmq-openmessaging</artifactId>
+      <version>${rocketmq.version}</version>
     </dependency>
   </dependencies>
 
