@@ -15,70 +15,158 @@ import reactor.core.scheduler.Schedulers;
 @Slf4j
 public class SchedulerDemo {
 
-  private static final String EXECUTE_TASK_ONE = "execute task #1";
-  private static final String EXECUTE_TASK_TWO = "execute task #2";
+  private static final String START_EXECUTING = "start executing";
   private static final String EXECUTED_COMPLETELY = "executed completely";
 
   public static void main(String[] args) {
 //    elasticDemo();
 //    boundedElasticDemo();
-    parallelDemo();
+//    parallelDemo();
 //    singleDemo();
 //    immediateDemo();
 //    fromExecutorDemo();
-//    fromExecutorServiceDemo();
+    fromExecutorServiceDemo();
   }
 
   private static void fromExecutorServiceDemo() {
-    Scheduler fromExecutorService = Schedulers.fromExecutorService(Executors.newSingleThreadExecutor());
+    int taskCount = 10;
+    CountDownLatch countDownLatch = new CountDownLatch(taskCount);
+    Scheduler fromExecutorService = Schedulers.fromExecutorService(Executors.newCachedThreadPool());
+    log.info(START_EXECUTING);
+    for (int i = 0; i < taskCount; i++) {
+      int finalI = i;
+      fromExecutorService.schedule(() -> {
+        log.info("executing task #{}", finalI);
+        try {
+          Thread.sleep(3000);
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+          e.printStackTrace();
+        }
+        countDownLatch.countDown();
+      });
+    }
+
+    try {
+      countDownLatch.await();
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      e.printStackTrace();
+    }
+    log.info(EXECUTED_COMPLETELY);
   }
 
   private static void fromExecutorDemo() {
-    Scheduler fromExecutor = Schedulers.fromExecutor(Executors.newSingleThreadExecutor());
+    int taskCount = 10;
+    CountDownLatch countDownLatch = new CountDownLatch(taskCount);
+    Scheduler fromExecutor = Schedulers.fromExecutor(command -> {
+      log.info("{} executing task", Thread.currentThread().getName());
+      command.run();
+    });
+    log.info(START_EXECUTING);
+    for (int i = 0; i < taskCount; i++) {
+      int finalI = i;
+      fromExecutor.schedule(() -> {
+        log.info("executing task #{}", finalI);
+        try {
+          Thread.sleep(3000);
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+          e.printStackTrace();
+        }
+        countDownLatch.countDown();
+      });
+    }
+
+    try {
+      countDownLatch.await();
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      e.printStackTrace();
+    }
+    log.info(EXECUTED_COMPLETELY);
   }
 
   private static void immediateDemo() {
+    int taskCount = 10;
+    CountDownLatch countDownLatch = new CountDownLatch(taskCount);
     Scheduler immediate = Schedulers.immediate();
+    log.info(START_EXECUTING);
+    for (int i = 0; i < taskCount; i++) {
+      int finalI = i;
+      immediate.schedule(() -> {
+        log.info("executing task #{}", finalI);
+        try {
+          Thread.sleep(3000);
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+          e.printStackTrace();
+        }
+        countDownLatch.countDown();
+      });
+    }
+
+    try {
+      countDownLatch.await();
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      e.printStackTrace();
+    }
+    log.info(EXECUTED_COMPLETELY);
   }
 
   private static void singleDemo() {
-    CountDownLatch taskCount = new CountDownLatch(2);
+    int taskCount = 10;
+    CountDownLatch countDownLatch = new CountDownLatch(taskCount);
     Scheduler single = Schedulers.single();
-    single.schedule(() -> {
-      log.info("execute task #1");
-      taskCount.countDown();
-    }, 1, TimeUnit.SECONDS);
-    single.schedule(() -> {
-      log.info("execute task #2");
-      taskCount.countDown();
-    }, 1, TimeUnit.SECONDS);
-
+    log.info(START_EXECUTING);
+    for (int i = 0; i < taskCount; i++) {
+      int finalI = i;
+      single.schedule(() -> {
+        log.info("execute task #{}", finalI);
+        try {
+          Thread.sleep(12000);
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+          e.printStackTrace();
+        }
+        countDownLatch.countDown();
+      }, 1, TimeUnit.SECONDS);
+    }
     try {
-      taskCount.await();
+      countDownLatch.await();
     } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
       e.printStackTrace();
     }
-    log.info("Executed completely");
+    log.info(EXECUTED_COMPLETELY);
   }
 
   private static void parallelDemo() {
-    CountDownLatch taskCount = new CountDownLatch(2);
+    int taskCount = 5;
+    CountDownLatch countDownLatch = new CountDownLatch(taskCount);
     /**
+     * VM options: -Dreactor.schedulers.defaultPoolSize=4
      * {@link Schedulers#PARALLEL_SUPPLIER}
      * {@link ParallelScheduler#ParallelScheduler(int, java.util.concurrent.ThreadFactory)}
      */
     Scheduler parallel = Schedulers.parallel();
-    parallel.schedule(() -> {
-      log.info(EXECUTE_TASK_ONE);
-      taskCount.countDown();
-    }, 1, TimeUnit.SECONDS);
-    parallel.schedule(() -> {
-      log.info(EXECUTE_TASK_TWO);
-      taskCount.countDown();
-    }, 1, TimeUnit.SECONDS);
-
+    log.info(START_EXECUTING);
+    for (int i = 0; i < taskCount; i++) {
+      int finalI = i;
+      parallel.schedule(() -> {
+        log.info("executing task #{}", finalI);
+        try {
+          Thread.sleep(3000);
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+          e.printStackTrace();
+        }
+        countDownLatch.countDown();
+      }, 1, TimeUnit.SECONDS);
+    }
     try {
-      taskCount.await();
+      countDownLatch.await();
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
       e.printStackTrace();
@@ -87,10 +175,10 @@ public class SchedulerDemo {
   }
 
   private static void boundedElasticDemo() {
-    int taskCount = 401;
+    int taskCount = 40;
     CountDownLatch countDownLatch = new CountDownLatch(taskCount);
     /**
-     * VM options: -Dreactor.schedulers.defaultBoundedElasticSize=40 -Dreactor.schedulers.defaultBoundedElasticQueueSize=10
+     * VM options: -Dreactor.schedulers.defaultBoundedElasticSize=4 -Dreactor.schedulers.defaultBoundedElasticQueueSize=10
      * corePoolSize=1, maximumPoolSize=Integer.MAX_VALUE, keepAliveTime=10L,
      * {@link Schedulers#BOUNDED_ELASTIC_SUPPLIER}
      * {@link Schedulers#DEFAULT_BOUNDED_ELASTIC_SIZE}: maximum threads
@@ -98,6 +186,7 @@ public class SchedulerDemo {
      * {@link BoundedElasticScheduler#BoundedElasticScheduler(int, int, java.util.concurrent.ThreadFactory, long, java.time.Clock)}
      */
     Scheduler boundedElastic = Schedulers.boundedElastic();
+    log.info(EXECUTED_COMPLETELY);
     for (int i = 0; i < taskCount; i++) {
       int finalI = i;
       boundedElastic.schedule(() -> {
@@ -105,6 +194,7 @@ public class SchedulerDemo {
         try {
           Thread.sleep(3000);
         } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
           e.printStackTrace();
         }
         countDownLatch.countDown();
@@ -136,6 +226,7 @@ public class SchedulerDemo {
         try {
           Thread.sleep(1000);
         } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
           e.printStackTrace();
         }
         countDownLatch.countDown();
