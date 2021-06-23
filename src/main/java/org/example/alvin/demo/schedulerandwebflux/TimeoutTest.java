@@ -1,5 +1,6 @@
 package org.example.alvin.demo.schedulerandwebflux;
 
+import java.time.Duration;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
@@ -13,41 +14,41 @@ import reactor.core.scheduler.Schedulers;
 public class TimeoutTest {
 
   public static void main(String[] args) {
-    boSubscribeDemo();
-  }
-
-  private static void boSubscribeDemo() {
-    Mono<String> resultMono1 = mockRestfulRequest1();
-    Mono<String> resultMono2 = mockRestfulRequest2();
-
+    subscribeLast_withElasticSchedulerDemo();
   }
 
   private static void subscribeLast_withElasticSchedulerDemo() {
     Scheduler elastic = Schedulers.elastic();
-    Mono<String> resultMono1 = mockRestfulRequest1();
-    Mono<String> resultMono2 = mockRestfulRequest2();
-
+    TimeoutTest instance = new TimeoutTest();
+    Mono<String> startMono = Mono.just("start parameters");
+    startMono.flatMap(instance::mockRestfulRequest1)
+        .subscribeOn(elastic)
+        .timeout(Duration.ofSeconds(3))
+        .flatMap(instance::mockRestfulRequest2)
+        .subscribeOn(elastic)
+        .timeout(Duration.ofSeconds(4))
+        .subscribe();
   }
 
-  private static Mono<String> mockRestfulRequest1() {
-    log.info("Working on processing request...");
+  private Mono<String> mockRestfulRequest1(String value) {
+    log.info("Working on processing request #1...");
     try {
       Thread.sleep(2000);
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
       e.printStackTrace();
     }
-    return Mono.just("successful result #1");
+    return Mono.just("successful result #1, result: " + value);
   }
 
-  private static Mono<String> mockRestfulRequest2() {
-    log.info("Working on processing request...");
+  private Mono<String> mockRestfulRequest2(String value) {
+    log.info("Working on processing request #2...");
     try {
       Thread.sleep(3000);
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
       e.printStackTrace();
     }
-    return Mono.just("successful result #2");
+    return Mono.just("successful result #2, result: " + value);
   }
 }
