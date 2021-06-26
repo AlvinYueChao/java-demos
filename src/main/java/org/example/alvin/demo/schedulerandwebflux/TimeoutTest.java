@@ -21,34 +21,49 @@ public class TimeoutTest {
     Scheduler elastic = Schedulers.elastic();
     TimeoutTest instance = new TimeoutTest();
     Mono<String> startMono = Mono.just("start parameters");
-    startMono.flatMap(instance::mockRestfulRequest1)
-        .subscribeOn(elastic)
+    startMono.publishOn(elastic)
+        .flatMap(instance::mockRestfulRequest1)
         .timeout(Duration.ofSeconds(3))
+        .doOnError(throwable -> log.error("Caught exception in task #1", throwable))
+        .publishOn(elastic)
         .flatMap(instance::mockRestfulRequest2)
-        .subscribeOn(elastic)
         .timeout(Duration.ofSeconds(4))
-        .subscribe();
+        .doOnError(throwable -> log.error("Caught exception in task #2", throwable))
+        .block();
+    /*startMono
+        .flatMap(instance::mockRestfulRequest1)
+        .timeout(Duration.ofSeconds(3))
+        .doOnError(throwable -> log.error("Caught exception in task #1", throwable))
+        .flatMap(instance::mockRestfulRequest2)
+        .timeout(Duration.ofSeconds(6))
+        .doOnError(throwable -> log.error("Caught exception in task #2", throwable))
+        .publishOn(elastic)
+        .block();*/
   }
 
   private Mono<String> mockRestfulRequest1(String value) {
-    log.info("Working on processing request #1...");
+    log.info("Task #1 started...");
     try {
       Thread.sleep(2000);
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
-      e.printStackTrace();
+//      e.printStackTrace();
+      return Mono.error(e);
     }
+    log.info("Task #1 ended...");
     return Mono.just("successful result #1, result: " + value);
   }
 
   private Mono<String> mockRestfulRequest2(String value) {
-    log.info("Working on processing request #2...");
+    log.info("Task #2 started...");
     try {
       Thread.sleep(3000);
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
-      e.printStackTrace();
+//      e.printStackTrace();
+      return Mono.error(e);
     }
+    log.info("Task #2 ended...");
     return Mono.just("successful result #2, result: " + value);
   }
 }
