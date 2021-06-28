@@ -1,4 +1,4 @@
-package org.example.alvin.demo.schedulerandwebflux;
+package org.example.alvin.demo.scheduler;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
