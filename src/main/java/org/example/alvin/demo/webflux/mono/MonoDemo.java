@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.CollectionUtils;
 import reactor.core.publisher.Mono;
 
 /**
@@ -44,9 +43,8 @@ public class MonoDemo {
       }
       return Arrays.asList("1", "2", "3");
     });
-    List<String> result = listMono.block();
-    if (!CollectionUtils.isEmpty(result)) {
-      log.info("{}", result.toString());
-    }
+    listMono.subscribe(strings -> {
+      log.info("{}", strings.toString());
+    });
   }
 }
