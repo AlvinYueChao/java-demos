@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 /**
  * @author AlvinPower
@@ -22,31 +21,14 @@ public class MonoDemo {
   private static void monoMultipleThreadsTimeoutDemo() {
     Mono<String> startMono = Mono.just("start");
     String result = startMono
-        .flatMap(x -> {
-          log.info("received message: {}", x);
-          try {
-            Thread.sleep(2000);
-          } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-          }
-          return Mono.just("#1 enriched: " + x);
-        })
+        .flatMap(MonoDemo::firstRequest)
         .timeout(Duration.ofSeconds(3))
         .onErrorResume(throwable -> {
           log.warn("Caught exception, apply fallback behavior #1", throwable);
           return Mono.just("item from backup #1");
         })
-        .publishOn(Schedulers.elastic())
-        .flatMap(y -> {
-          log.info("received message: {}", y);
-          try {
-            Thread.sleep(3000);
-          } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-          }
-          return Mono.just("#2 enriched: " + y);
-        })
-        .timeout(Duration.ofSeconds(4))
+        .flatMap(MonoDemo::secondRequest)
+        .timeout(Duration.ofSeconds(6))
         .onErrorResume(throwable -> {
           log.warn("Caught exception, apply fallback behavior #2", throwable);
           return Mono.just("item from backup #2");
@@ -121,5 +103,15 @@ public class MonoDemo {
     listMono.subscribe(strings -> {
       log.info("{}", strings.toString());
     });
+  }
+
+  private static Mono<String> firstRequest(String input) {
+    log.info("start processing #1...");
+    return Mono.delay(Duration.ofSeconds(2)).thenReturn("#1 enriched: " + input);
+  }
+
+  private static Mono<String> secondRequest(String input) {
+    log.info("start processing #2...");
+    return Mono.delay(Duration.ofSeconds(3)).thenReturn("#2 enriched: " + input);
   }
 }
