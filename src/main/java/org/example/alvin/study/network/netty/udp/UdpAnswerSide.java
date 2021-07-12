@@ -13,22 +13,21 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class UdpAnswerSide {
+
   public static final int ANSWER_PORT = 8080;
-  public static final String ANSWER_PREFIX = "今天星期";
+  public static final String ANSWER_PREFIX = "Today is ";
 
   private static void run(int port) {
     EventLoopGroup group = new NioEventLoopGroup();
-    //
+    // udp无连接，没有接收连接的说法，所以即使是服务接收端也应该用 Bootstrap 而不是 ServerBootstrap
     Bootstrap bootstrap = new Bootstrap();
-    bootstrap.group(group)
-        .channel(NioDatagramChannel.class)
-        .handler(new AnswerHandler());
+    bootstrap.group(group).channel(NioDatagramChannel.class).handler(new AnswerHandler());
     try {
       ChannelFuture future = bootstrap.bind(port).sync();
-      log.info("应答服务已启动...");
+      log.info("UDP Answer side is waiting for request...");
       future.channel().closeFuture().sync();
     } catch (InterruptedException e) {
-      log.warn("停止接收问答", e);
+      log.warn("stop waiting for request", e);
       Thread.currentThread().interrupt();
     } finally {
       group.shutdownGracefully();
