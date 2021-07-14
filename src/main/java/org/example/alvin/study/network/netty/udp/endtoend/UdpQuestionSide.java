@@ -1,4 +1,4 @@
-package org.example.alvin.study.network.netty.udp;
+package org.example.alvin.study.network.netty.udp.endtoend;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;

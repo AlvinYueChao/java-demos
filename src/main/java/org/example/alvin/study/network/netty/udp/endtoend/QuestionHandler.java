@@ -1,4 +1,4 @@
-package org.example.alvin.study.network.netty.udp;
+package org.example.alvin.study.network.netty.udp.endtoend;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
