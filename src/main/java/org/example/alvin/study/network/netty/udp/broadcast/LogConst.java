@@ -30,7 +30,7 @@ public class LogConst {
 
   private static final Random SEED = new Random();
 
-  public String getNextQuota() {
+  public static String getLogInfo() {
     return LOG_MESSAGES[SEED.nextInt(LOG_MESSAGES.length)];
   }
 }
