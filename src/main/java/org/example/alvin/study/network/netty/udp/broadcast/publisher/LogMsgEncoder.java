@@ -7,7 +7,6 @@ import io.netty.handler.codec.MessageToMessageEncoder;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import org.example.alvin.study.network.netty.udp.broadcast.LogConst;
 import org.example.alvin.study.network.netty.udp.broadcast.LogMsg;
 
 /**
@@ -28,7 +27,7 @@ public class LogMsgEncoder extends MessageToMessageEncoder<LogMsg> {
     ByteBuf buf = channelHandlerContext.alloc().buffer(8 * 2 + bytes.length + 1);
     buf.writeLong(logMsg.getTime());
     buf.writeLong(logMsg.getMsgId());
-    buf.writeByte(LogConst.MONITOR_SIDE_PORT);
+    buf.writeByte(LogMsg.SEPARATOR);
     buf.writeBytes(bytes);
     list.add(new DatagramPacket(buf, this.remoteAddress));
   }

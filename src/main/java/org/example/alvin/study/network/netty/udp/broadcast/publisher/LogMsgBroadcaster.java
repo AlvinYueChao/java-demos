@@ -47,7 +47,7 @@ public class LogMsgBroadcaster {
     }
   }
 
-  public void close() {
+  public void stop() {
     this.group.shutdownGracefully();
   }
 
@@ -60,7 +60,7 @@ public class LogMsgBroadcaster {
       log.warn("Caught exception when broadcasting log message", e);
       Thread.currentThread().interrupt();
     } finally {
-      broadcaster.close();
+      broadcaster.stop();
     }
   }
 }
