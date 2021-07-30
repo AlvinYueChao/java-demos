@@ -15,6 +15,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 
 @Slf4j
 public class StringProducer {
+
   private static final String STOP_FLAG = "stop";
 
   public static void main(String[] args) {
@@ -36,7 +37,7 @@ public class StringProducer {
     log.info("Please enter your message in line, type 'stop' to quit");
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     String line;
-    for (;;) {
+    for (; ; ) {
       try {
         if ((line = reader.readLine()) != null) {
           if (StringUtils.equalsIgnoreCase(line, STOP_FLAG)) {
