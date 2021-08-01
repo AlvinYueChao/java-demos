@@ -115,6 +115,9 @@ public class StringConsumer {
     }
   }
 
+  /**
+   * has unknown issue, cannot consume messages
+   */
   private static void autoCommitOffset() {
     String topicName = "org.example.alvin.private.json.test";
     String userName = "admin";
