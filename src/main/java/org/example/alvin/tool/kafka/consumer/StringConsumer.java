@@ -21,6 +21,10 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 public class StringConsumer {
 
   public static void main(String[] args) {
+    manuallyCommitOffset();
+  }
+
+  private static void manuallyCommitOffset() {
     String topicName = "org.example.alvin.private.json.test";
     String userName = "admin";
     String password = "admin-secret";
@@ -60,9 +64,6 @@ public class StringConsumer {
           });
         }
       }
-      /*if (records.isEmpty()) {
-        break;
-      }*/
     }
   }
 }
