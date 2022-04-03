@@ -22,7 +22,7 @@ public class FluxDemo {
 
   private static void fluxMultipleThreadsTimeoutDemo() {
     Flux<String> startMono = Flux.just("start");
-    String resullt = startMono
+    String result = startMono
         .map(x -> {
           log.info("received message: {}", x);
           try {
@@ -53,7 +53,7 @@ public class FluxDemo {
           return Mono.just("item from backup #2");
         })
         .blockFirst();
-    log.info("result: {}", resullt);
+    log.info("result: {}", result);
   }
 
   private static void fluxSingleThreadTimeoutDemo() {
