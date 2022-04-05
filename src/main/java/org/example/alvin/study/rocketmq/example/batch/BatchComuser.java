@@ -17,14 +17,16 @@ public class BatchComuser {
     consumer.setNamesrvAddr(LocalConstant.NAME_SERVER_ADDR);
     // 订阅Topic
     consumer.subscribe("BatchTest", "*");
-    //负载均衡模式消费
+    // 负载均衡模式消费
     consumer.setMessageModel(MessageModel.CLUSTERING);
     // 注册回调函数，处理消息
-    consumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
-      log.info("{} received new message: {}", Thread.currentThread().getName(), msgs);
-      return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-    });
-    //启动消息者
+    consumer.registerMessageListener(
+        (MessageListenerConcurrently)
+            (msgs, context) -> {
+              log.info("{} received new message: {}", Thread.currentThread().getName(), msgs);
+              return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            });
+    // 启动消息者
     consumer.start();
     log.info("Consumer Started");
   }

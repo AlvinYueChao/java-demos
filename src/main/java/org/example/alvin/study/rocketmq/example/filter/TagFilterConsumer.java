@@ -35,10 +35,12 @@ public class TagFilterConsumer {
 
     consumer.subscribe("TOPIC", "TAGA || TAGB || TAGC");
 
-    consumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
-      log.info("{} Receive New Messages: {}", Thread.currentThread().getName(), msgs);
-      return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-    });
+    consumer.registerMessageListener(
+        (MessageListenerConcurrently)
+            (msgs, context) -> {
+              log.info("{} Receive New Messages: {}", Thread.currentThread().getName(), msgs);
+              return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            });
 
     consumer.start();
 

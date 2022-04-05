@@ -15,7 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 public class QuestionHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 
   @Override
-  protected void channelRead0(ChannelHandlerContext channelHandlerContext, DatagramPacket datagramPacket) throws Exception {
+  protected void channelRead0(
+      ChannelHandlerContext channelHandlerContext, DatagramPacket datagramPacket) throws Exception {
     String response = datagramPacket.content().toString(StandardCharsets.UTF_8);
     if (StringUtils.startsWith(response, UdpAnswerSide.ANSWER_PREFIX)) {
       log.info("Received response: {}", response);

@@ -32,12 +32,14 @@ public class TagFilterProducer {
     producer.setNamesrvAddr(LocalConstant.NAME_SERVER_ADDR);
     producer.start();
 
-    String[] tags = new String[]{"TagA", "TagB", "TagC"};
+    String[] tags = new String[] {"TagA", "TagB", "TagC"};
 
     for (int i = 0; i < 60; i++) {
-      Message msg = new Message("TagFilterTest",
-          tags[i % tags.length],
-          "Hello world".getBytes(StandardCharsets.UTF_8));
+      Message msg =
+          new Message(
+              "TagFilterTest",
+              tags[i % tags.length],
+              "Hello world".getBytes(StandardCharsets.UTF_8));
 
       SendResult sendResult = producer.send(msg);
       log.info("{}", sendResult);

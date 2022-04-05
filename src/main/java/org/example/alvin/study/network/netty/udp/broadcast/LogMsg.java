@@ -11,14 +11,10 @@ public final class LogMsg {
 
   public static final byte SEPARATOR = (byte) ';';
 
-  @Getter
-  private final InetSocketAddress source;
-  @Getter
-  private final String msg;
-  @Getter
-  private final long msgId;
-  @Getter
-  private final long time;
+  @Getter private final InetSocketAddress source;
+  @Getter private final String msg;
+  @Getter private final long msgId;
+  @Getter private final long time;
 
   private LogMsg(InetSocketAddress source, String msg, long msgId, long time) {
     this.source = source;

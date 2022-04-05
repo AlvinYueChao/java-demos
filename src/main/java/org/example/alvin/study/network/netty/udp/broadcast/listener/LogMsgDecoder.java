@@ -20,10 +20,14 @@ import org.example.alvin.study.network.netty.udp.broadcast.LogMsg;
 public class LogMsgDecoder extends MessageToMessageDecoder<DatagramPacket> {
 
   @Override
-  protected void decode(ChannelHandlerContext channelHandlerContext, DatagramPacket datagramPacket, List<Object> list) {
+  protected void decode(
+      ChannelHandlerContext channelHandlerContext,
+      DatagramPacket datagramPacket,
+      List<Object> list) {
     ByteBuf buf = datagramPacket.content();
     long sendTime = buf.readLong();
-    LocalDateTime sendTimeUTC = LocalDateTime.ofInstant(Instant.ofEpochMilli(sendTime), ZoneId.of("UTC"));
+    LocalDateTime sendTimeUTC =
+        LocalDateTime.ofInstant(Instant.ofEpochMilli(sendTime), ZoneId.of("UTC"));
     log.info("Received message at: {}", sendTimeUTC);
     long msgId = buf.readLong();
     // 是否可省略?

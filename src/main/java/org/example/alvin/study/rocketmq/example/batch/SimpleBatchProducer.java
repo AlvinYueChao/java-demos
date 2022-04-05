@@ -30,8 +30,9 @@ public class SimpleBatchProducer {
     producer.setNamesrvAddr(LocalConstant.NAME_SERVER_ADDR);
     producer.start();
 
-    //If you just send messages of no more than 1MiB at a time, it is easy to use batch
-    //Messages of the same batch should have: same topic, same waitStoreMsgOK and no schedule support
+    // If you just send messages of no more than 1MiB at a time, it is easy to use batch
+    // Messages of the same batch should have: same topic, same waitStoreMsgOK and no schedule
+    // support
     String topic = "BatchTest";
     List<Message> messages = new ArrayList<>();
     messages.add(new Message(topic, "Tag", "OrderID001", "Hello world 0".getBytes()));

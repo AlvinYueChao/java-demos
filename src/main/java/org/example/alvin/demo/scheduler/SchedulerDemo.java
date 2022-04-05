@@ -2,7 +2,6 @@ package org.example.alvin.demo.scheduler;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.scheduler.Scheduler;
@@ -19,12 +18,12 @@ public class SchedulerDemo {
   private static final String EXECUTED_COMPLETELY = "executed completely";
 
   public static void main(String[] args) {
-//    elasticDemo();
-//    boundedElasticDemo();
-//    parallelDemo();
-//    singleDemo();
-//    immediateDemo();
-//    fromExecutorDemo();
+    //    elasticDemo();
+    //    boundedElasticDemo();
+    //    parallelDemo();
+    //    singleDemo();
+    //    immediateDemo();
+    //    fromExecutorDemo();
     fromExecutorServiceDemo();
   }
 
@@ -35,16 +34,17 @@ public class SchedulerDemo {
     log.info(START_EXECUTING);
     for (int i = 0; i < taskCount; i++) {
       int finalI = i;
-      fromExecutorService.schedule(() -> {
-        log.info("executing task #{}", finalI);
-        try {
-          Thread.sleep(3000);
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-          e.printStackTrace();
-        }
-        countDownLatch.countDown();
-      });
+      fromExecutorService.schedule(
+          () -> {
+            log.info("executing task #{}", finalI);
+            try {
+              Thread.sleep(3000);
+            } catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+              e.printStackTrace();
+            }
+            countDownLatch.countDown();
+          });
     }
 
     try {
@@ -59,23 +59,26 @@ public class SchedulerDemo {
   private static void fromExecutorDemo() {
     int taskCount = 10;
     CountDownLatch countDownLatch = new CountDownLatch(taskCount);
-    Scheduler fromExecutor = Schedulers.fromExecutor(command -> {
-      log.info("{} executing task", Thread.currentThread().getName());
-      command.run();
-    });
+    Scheduler fromExecutor =
+        Schedulers.fromExecutor(
+            command -> {
+              log.info("{} executing task", Thread.currentThread().getName());
+              command.run();
+            });
     log.info(START_EXECUTING);
     for (int i = 0; i < taskCount; i++) {
       int finalI = i;
-      fromExecutor.schedule(() -> {
-        log.info("executing task #{}", finalI);
-        try {
-          Thread.sleep(3000);
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-          e.printStackTrace();
-        }
-        countDownLatch.countDown();
-      });
+      fromExecutor.schedule(
+          () -> {
+            log.info("executing task #{}", finalI);
+            try {
+              Thread.sleep(3000);
+            } catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+              e.printStackTrace();
+            }
+            countDownLatch.countDown();
+          });
     }
 
     try {
@@ -94,16 +97,17 @@ public class SchedulerDemo {
     log.info(START_EXECUTING);
     for (int i = 0; i < taskCount; i++) {
       int finalI = i;
-      immediate.schedule(() -> {
-        log.info("executing task #{}", finalI);
-        try {
-          Thread.sleep(3000);
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-          e.printStackTrace();
-        }
-        countDownLatch.countDown();
-      });
+      immediate.schedule(
+          () -> {
+            log.info("executing task #{}", finalI);
+            try {
+              Thread.sleep(3000);
+            } catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+              e.printStackTrace();
+            }
+            countDownLatch.countDown();
+          });
     }
 
     try {
@@ -122,16 +126,19 @@ public class SchedulerDemo {
     log.info(START_EXECUTING);
     for (int i = 0; i < taskCount; i++) {
       int finalI = i;
-      single.schedule(() -> {
-        log.info("execute task #{}", finalI);
-        try {
-          Thread.sleep(12000);
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-          e.printStackTrace();
-        }
-        countDownLatch.countDown();
-      }, 1, TimeUnit.SECONDS);
+      single.schedule(
+          () -> {
+            log.info("execute task #{}", finalI);
+            try {
+              Thread.sleep(12000);
+            } catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+              e.printStackTrace();
+            }
+            countDownLatch.countDown();
+          },
+          1,
+          TimeUnit.SECONDS);
     }
     try {
       countDownLatch.await();
@@ -146,24 +153,26 @@ public class SchedulerDemo {
     int taskCount = 5;
     CountDownLatch countDownLatch = new CountDownLatch(taskCount);
     /**
-     * VM options: -Dreactor.schedulers.defaultPoolSize=4
-     * {@link Schedulers#PARALLEL_SUPPLIER}
+     * VM options: -Dreactor.schedulers.defaultPoolSize=4 {@link Schedulers#PARALLEL_SUPPLIER}
      * {@link ParallelScheduler#ParallelScheduler(int, java.util.concurrent.ThreadFactory)}
      */
     Scheduler parallel = Schedulers.parallel();
     log.info(START_EXECUTING);
     for (int i = 0; i < taskCount; i++) {
       int finalI = i;
-      parallel.schedule(() -> {
-        log.info("executing task #{}", finalI);
-        try {
-          Thread.sleep(3000);
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-          e.printStackTrace();
-        }
-        countDownLatch.countDown();
-      }, 1, TimeUnit.SECONDS);
+      parallel.schedule(
+          () -> {
+            log.info("executing task #{}", finalI);
+            try {
+              Thread.sleep(3000);
+            } catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+              e.printStackTrace();
+            }
+            countDownLatch.countDown();
+          },
+          1,
+          TimeUnit.SECONDS);
     }
     try {
       countDownLatch.await();
@@ -178,27 +187,31 @@ public class SchedulerDemo {
     int taskCount = 40;
     CountDownLatch countDownLatch = new CountDownLatch(taskCount);
     /**
-     * VM options: -Dreactor.schedulers.defaultBoundedElasticSize=4 -Dreactor.schedulers.defaultBoundedElasticQueueSize=10
-     * corePoolSize=1, maximumPoolSize=Integer.MAX_VALUE, keepAliveTime=10L,
-     * {@link Schedulers#BOUNDED_ELASTIC_SUPPLIER}
-     * {@link Schedulers#DEFAULT_BOUNDED_ELASTIC_SIZE}: maximum threads
-     * {@link Schedulers#DEFAULT_BOUNDED_ELASTIC_QUEUESIZE}: maximum tasks queued for per-thread.
-     * {@link BoundedElasticScheduler#BoundedElasticScheduler(int, int, java.util.concurrent.ThreadFactory, long, java.time.Clock)}
+     * VM options: -Dreactor.schedulers.defaultBoundedElasticSize=4
+     * -Dreactor.schedulers.defaultBoundedElasticQueueSize=10 corePoolSize=1,
+     * maximumPoolSize=Integer.MAX_VALUE, keepAliveTime=10L, {@link
+     * Schedulers#BOUNDED_ELASTIC_SUPPLIER} {@link Schedulers#DEFAULT_BOUNDED_ELASTIC_SIZE}: maximum
+     * threads {@link Schedulers#DEFAULT_BOUNDED_ELASTIC_QUEUESIZE}: maximum tasks queued for
+     * per-thread. {@link BoundedElasticScheduler#BoundedElasticScheduler(int, int,
+     * java.util.concurrent.ThreadFactory, long, java.time.Clock)}
      */
     Scheduler boundedElastic = Schedulers.boundedElastic();
     log.info(EXECUTED_COMPLETELY);
     for (int i = 0; i < taskCount; i++) {
       int finalI = i;
-      boundedElastic.schedule(() -> {
-        log.info("executing task #{}", finalI);
-        try {
-          Thread.sleep(3000);
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-          e.printStackTrace();
-        }
-        countDownLatch.countDown();
-      }, 1, TimeUnit.SECONDS);
+      boundedElastic.schedule(
+          () -> {
+            log.info("executing task #{}", finalI);
+            try {
+              Thread.sleep(3000);
+            } catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+              e.printStackTrace();
+            }
+            countDownLatch.countDown();
+          },
+          1,
+          TimeUnit.SECONDS);
     }
     try {
       countDownLatch.await();
@@ -213,24 +226,28 @@ public class SchedulerDemo {
     int taskCount = 101;
     CountDownLatch countDownLatch = new CountDownLatch(taskCount);
     /**
-     * corePoolSize=1, maximumPoolSize=Integer.MAX_VALUE, keepAliveTime=10L, timeUnit=MILLISECONDS, workQueue=BlockingQueue
-     * {@link Schedulers#ELASTIC_SUPPLIER}
-     * {@link reactor.core.scheduler.ElasticScheduler#ElasticScheduler(java.util.concurrent.ThreadFactory, int)}
-     * {@link ScheduledThreadPoolExecutor#ScheduledThreadPoolExecutor(int, java.util.concurrent.ThreadFactory)}
+     * corePoolSize=1, maximumPoolSize=Integer.MAX_VALUE, keepAliveTime=10L, timeUnit=MILLISECONDS,
+     * workQueue=BlockingQueue {@link Schedulers#ELASTIC_SUPPLIER} {@link
+     * reactor.core.scheduler.ElasticScheduler#ElasticScheduler(java.util.concurrent.ThreadFactory,
+     * int)} {@link ScheduledThreadPoolExecutor#ScheduledThreadPoolExecutor(int,
+     * java.util.concurrent.ThreadFactory)}
      */
     Scheduler elastic = Schedulers.elastic();
     for (int i = 0; i < taskCount; i++) {
       int finalI = i;
-      elastic.schedule(() -> {
-        log.info("executing task #{}", finalI);
-        try {
-          Thread.sleep(1000);
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-          e.printStackTrace();
-        }
-        countDownLatch.countDown();
-      }, 1, TimeUnit.SECONDS);
+      elastic.schedule(
+          () -> {
+            log.info("executing task #{}", finalI);
+            try {
+              Thread.sleep(1000);
+            } catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+              e.printStackTrace();
+            }
+            countDownLatch.countDown();
+          },
+          1,
+          TimeUnit.SECONDS);
     }
 
     try {

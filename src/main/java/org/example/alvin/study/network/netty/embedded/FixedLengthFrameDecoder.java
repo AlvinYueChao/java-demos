@@ -15,15 +15,16 @@ public class FixedLengthFrameDecoder extends ByteToMessageDecoder {
 
   public FixedLengthFrameDecoder(int frameLengthBytes) {
     if (frameLengthBytes <= 0) {
-      throw new IllegalArgumentException("frameLength must be a positive integer: " + frameLengthBytes);
+      throw new IllegalArgumentException(
+          "frameLength must be a positive integer: " + frameLengthBytes);
     }
     this.frameLengthBytes = frameLengthBytes;
   }
 
-
   @Override
-  protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf,
-      List<Object> list) throws Exception {
+  protected void decode(
+      ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf, List<Object> list)
+      throws Exception {
     while (byteBuf.readableBytes() >= frameLengthBytes) {
       // 检查是否有足够的字节可以被读取以生成下一个帧
       ByteBuf buf = byteBuf.readBytes(frameLengthBytes);

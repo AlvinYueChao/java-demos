@@ -35,27 +35,26 @@ public class SplitBatchProducer {
     // 启动Producer实例
     producer.start();
 
-    //large batch
+    // large batch
     String topic = "BatchTest";
     List<Message> messages = new ArrayList<>(100 * 1000);
-    //10万元素的数组
+    // 10万元素的数组
     for (int i = 0; i < 100 * 1000; i++) {
       messages.add(new Message(topic, "Tag", "OrderID" + i, ("Hello world " + i).getBytes()));
     }
 
-    //把大的消息分裂成若干个小的消息（1M左右）
+    // 把大的消息分裂成若干个小的消息（1M左右）
     ListSplitter splitter = new ListSplitter(messages);
     while (splitter.hasNext()) {
       List<Message> listItem = splitter.next();
       producer.send(listItem);
     }
   }
-
 }
 
 class ListSplitter implements Iterator<List<Message>> {
 
-  private static final int SIZE_LIMIT = 1000 * 1000;//1M
+  private static final int SIZE_LIMIT = 1000 * 1000; // 1M
   private final List<Message> messages;
   private int currIndex;
 
@@ -81,10 +80,10 @@ class ListSplitter implements Iterator<List<Message>> {
       }
       tmpSize = tmpSize + 20; // 增加日志的开销20字节
       if (tmpSize > SIZE_LIMIT) {
-        //单个消息超过了最大的限制（1M）
-        //忽略,否则会阻塞分裂的进程
+        // 单个消息超过了最大的限制（1M）
+        // 忽略,否则会阻塞分裂的进程
         if (nextIndex - currIndex == 0) {
-          //假如下一个子列表没有元素,则添加这个子列表然后退出循环,否则只是退出循环
+          // 假如下一个子列表没有元素,则添加这个子列表然后退出循环,否则只是退出循环
           nextIndex++;
         }
         break;
@@ -94,7 +93,6 @@ class ListSplitter implements Iterator<List<Message>> {
       } else {
         totalSize += tmpSize;
       }
-
     }
     List<Message> subList = messages.subList(currIndex, nextIndex);
     currIndex = nextIndex;

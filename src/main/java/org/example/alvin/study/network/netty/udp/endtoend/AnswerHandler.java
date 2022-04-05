@@ -16,7 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 @Slf4j
 public class AnswerHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 
-  private static final String[] ANSWER_DICTIONARY = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+  private static final String[] ANSWER_DICTIONARY =
+      new String[] {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
   private static final Random SED = new Random();
 
   private String getNextQuote() {
@@ -24,12 +25,15 @@ public class AnswerHandler extends SimpleChannelInboundHandler<DatagramPacket> {
   }
 
   @Override
-  protected void channelRead0(ChannelHandlerContext channelHandlerContext, DatagramPacket datagramPacket) throws Exception {
+  protected void channelRead0(
+      ChannelHandlerContext channelHandlerContext, DatagramPacket datagramPacket) throws Exception {
     String request = datagramPacket.content().toString(StandardCharsets.UTF_8);
     log.info("Received request: {}", request);
     if (StringUtils.equalsIgnoreCase(request, UdpQuestionSide.QUESTION)) {
       String answer = UdpAnswerSide.ANSWER_PREFIX + getNextQuote();
-      channelHandlerContext.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(answer, StandardCharsets.UTF_8), datagramPacket.sender()));
+      channelHandlerContext.writeAndFlush(
+          new DatagramPacket(
+              Unpooled.copiedBuffer(answer, StandardCharsets.UTF_8), datagramPacket.sender()));
     }
   }
 

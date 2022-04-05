@@ -25,16 +25,19 @@ public class LogMsgMonitor {
   public LogMsgMonitor(InetSocketAddress remoteAddress) {
     this.group = new NioEventLoopGroup();
     this.bootstrap = new Bootstrap();
-    this.bootstrap.group(this.group).channel(NioDatagramChannel.class)
+    this.bootstrap
+        .group(this.group)
+        .channel(NioDatagramChannel.class)
         .option(ChannelOption.SO_BROADCAST, true)
         .option(ChannelOption.SO_REUSEADDR, true)
-        .handler(new ChannelInitializer<NioDatagramChannel>() {
-          @Override
-          protected void initChannel(NioDatagramChannel nioDatagramChannel) {
-            ChannelPipeline pipeline = nioDatagramChannel.pipeline();
-            pipeline.addLast(new LogMsgDecoder()).addLast(new LogMsgHandler());
-          }
-        })
+        .handler(
+            new ChannelInitializer<NioDatagramChannel>() {
+              @Override
+              protected void initChannel(NioDatagramChannel nioDatagramChannel) {
+                ChannelPipeline pipeline = nioDatagramChannel.pipeline();
+                pipeline.addLast(new LogMsgDecoder()).addLast(new LogMsgHandler());
+              }
+            })
         // localAddress的作用:
         .localAddress(remoteAddress);
   }

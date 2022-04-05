@@ -22,7 +22,8 @@ public class StringProducer {
     String topicName = "org.example.alvin.private.json.test";
     String userName = "admin";
     String password = "admin-secret";
-    String jaasConfigFormat = "org.apache.kafka.common.security.scram.ScramLoginModule required username=%s password=%s;";
+    String jaasConfigFormat =
+        "org.apache.kafka.common.security.scram.ScramLoginModule required username=%s password=%s;";
     String jaasConfig = String.format(jaasConfigFormat, userName, password);
 
     Properties properties = new Properties();
@@ -43,14 +44,17 @@ public class StringProducer {
           if (StringUtils.equalsIgnoreCase(line, STOP_FLAG)) {
             break;
           } else {
-            ProducerRecord<String, String> record = new ProducerRecord<>(topicName, String.valueOf(System.currentTimeMillis()), line);
-            producer.send(record, ((recordMetadata, e) -> {
-              if (e != null) {
-                log.error("Caught exception when trying to publish data to kafka", e);
-              } else {
-                log.info("Published successfully. {}", recordMetadata);
-              }
-            }));
+            ProducerRecord<String, String> record =
+                new ProducerRecord<>(topicName, String.valueOf(System.currentTimeMillis()), line);
+            producer.send(
+                record,
+                ((recordMetadata, e) -> {
+                  if (e != null) {
+                    log.error("Caught exception when trying to publish data to kafka", e);
+                  } else {
+                    log.info("Published successfully. {}", recordMetadata);
+                  }
+                }));
           }
         }
       } catch (IOException e) {

@@ -23,23 +23,25 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 public class StringConsumer {
 
   public static void main(String[] args) {
-//    manuallyCommitOffset_commitConsumedOffset();
-//    manuallyCommitOffset_commitConsumedOffsetPlusOne();
+    //    manuallyCommitOffset_commitConsumedOffset();
+    //    manuallyCommitOffset_commitConsumedOffsetPlusOne();
     autoCommitOffset();
   }
-
 
   private static void manuallyCommitOffset_commitConsumedOffset() {
     String topicName = "org.example.alvin.private.json.test";
     String userName = "admin";
     String password = "admin-secret";
-    String jaasConfigFormat = "org.apache.kafka.common.security.scram.ScramLoginModule required username=%s password=%s;";
+    String jaasConfigFormat =
+        "org.apache.kafka.common.security.scram.ScramLoginModule required username=%s password=%s;";
     String jaasConfig = String.format(jaasConfigFormat, userName, password);
 
     Properties properties = new Properties();
     properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.20.10:9092");
-    properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-    properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+    properties.put(
+        ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+    properties.put(
+        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
     properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_PLAINTEXT");
     properties.put(SaslConfigs.SASL_MECHANISM, "SCRAM-SHA-256");
     properties.put(SaslConfigs.SASL_JAAS_CONFIG, jaasConfig);
@@ -57,16 +59,28 @@ public class StringConsumer {
       AtomicInteger accumulator = new AtomicInteger(0);
       ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(3));
       for (ConsumerRecord<String, String> record : records) {
-        log.info("Consumed message: {}, partition: {}, offset: {}", record.value(), record.partition(), record.offset());
-        partitionOffsets.put(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset(), "no metadata"));
+        log.info(
+            "Consumed message: {}, partition: {}, offset: {}",
+            record.value(),
+            record.partition(),
+            record.offset());
+        partitionOffsets.put(
+            new TopicPartition(record.topic(), record.partition()),
+            new OffsetAndMetadata(record.offset(), "no metadata"));
         int count = accumulator.incrementAndGet();
         if (count % 5 == 0) {
           consumer.commitSync(partitionOffsets);
           log.info("Committed offset, {}", consumer.committed(consumer.assignment()));
-          partitionOffsets.keySet().forEach(topicPartition -> {
-            long position = consumer.position(topicPartition);
-            log.info("After committing, partition: {}, position: {}", topicPartition.partition(), position);
-          });
+          partitionOffsets
+              .keySet()
+              .forEach(
+                  topicPartition -> {
+                    long position = consumer.position(topicPartition);
+                    log.info(
+                        "After committing, partition: {}, position: {}",
+                        topicPartition.partition(),
+                        position);
+                  });
         }
       }
     }
@@ -76,13 +90,16 @@ public class StringConsumer {
     String topicName = "org.example.alvin.private.json.test";
     String userName = "admin";
     String password = "admin-secret";
-    String jaasConfigFormat = "org.apache.kafka.common.security.scram.ScramLoginModule required username=%s password=%s;";
+    String jaasConfigFormat =
+        "org.apache.kafka.common.security.scram.ScramLoginModule required username=%s password=%s;";
     String jaasConfig = String.format(jaasConfigFormat, userName, password);
 
     Properties properties = new Properties();
     properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.20.10:9092");
-    properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-    properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+    properties.put(
+        ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+    properties.put(
+        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
     properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_PLAINTEXT");
     properties.put(SaslConfigs.SASL_MECHANISM, "SCRAM-SHA-256");
     properties.put(SaslConfigs.SASL_JAAS_CONFIG, jaasConfig);
@@ -100,35 +117,48 @@ public class StringConsumer {
       AtomicInteger accumulator = new AtomicInteger(0);
       ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(3));
       for (ConsumerRecord<String, String> record : records) {
-        log.info("Consumed message: {}, partition: {}, offset: {}", record.value(), record.partition(), record.offset());
-        partitionOffsets.put(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset() + 1, "no metadata"));
+        log.info(
+            "Consumed message: {}, partition: {}, offset: {}",
+            record.value(),
+            record.partition(),
+            record.offset());
+        partitionOffsets.put(
+            new TopicPartition(record.topic(), record.partition()),
+            new OffsetAndMetadata(record.offset() + 1, "no metadata"));
         int count = accumulator.incrementAndGet();
         if (count % 5 == 0) {
           consumer.commitSync(partitionOffsets);
           log.info("Committed offset, {}", consumer.committed(consumer.assignment()));
-          partitionOffsets.keySet().forEach(topicPartition -> {
-            long position = consumer.position(topicPartition);
-            log.info("After committing, partition: {}, position: {}", topicPartition.partition(), position);
-          });
+          partitionOffsets
+              .keySet()
+              .forEach(
+                  topicPartition -> {
+                    long position = consumer.position(topicPartition);
+                    log.info(
+                        "After committing, partition: {}, position: {}",
+                        topicPartition.partition(),
+                        position);
+                  });
         }
       }
     }
   }
 
-  /**
-   * has unknown issue, cannot consume messages
-   */
+  /** has unknown issue, cannot consume messages */
   private static void autoCommitOffset() {
     String topicName = "org.example.alvin.private.json.test";
     String userName = "admin";
     String password = "admin-secret";
-    String jaasConfigFormat = "org.apache.kafka.common.security.scram.ScramLoginModule required username=%s password=%s;";
+    String jaasConfigFormat =
+        "org.apache.kafka.common.security.scram.ScramLoginModule required username=%s password=%s;";
     String jaasConfig = String.format(jaasConfigFormat, userName, password);
 
     Properties properties = new Properties();
     properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.20.10:9092");
-    properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-    properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+    properties.put(
+        ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+    properties.put(
+        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
     properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_PLAINTEXT");
     properties.put(SaslConfigs.SASL_MECHANISM, "SCRAM-SHA-256");
     properties.put(SaslConfigs.SASL_JAAS_CONFIG, jaasConfig);
@@ -143,7 +173,11 @@ public class StringConsumer {
     for (; ; ) {
       ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(3));
       for (ConsumerRecord<String, String> record : records) {
-        log.info("Consumed message: {}, partition: {}, offset: {}", record.value(), record.partition(), record.offset());
+        log.info(
+            "Consumed message: {}, partition: {}, offset: {}",
+            record.value(),
+            record.partition(),
+            record.offset());
       }
       if (!records.isEmpty()) {
         boolean isCommitted;
@@ -151,13 +185,20 @@ public class StringConsumer {
         do {
           committed.clear();
           committed.putAll(consumer.committed(consumer.assignment()));
-          isCommitted = committed.values().stream().filter(Objects::nonNull).anyMatch(x -> x.offset() > 0);
+          isCommitted =
+              committed.values().stream().filter(Objects::nonNull).anyMatch(x -> x.offset() > 0);
         } while (!isCommitted);
         log.info("Committed offset, {}", consumer.committed(consumer.assignment()));
-        consumer.assignment().forEach(topicPartition -> {
-          long position = consumer.position(topicPartition);
-          log.info("After committing, partition: {}, position: {}", topicPartition.partition(), position);
-        });
+        consumer
+            .assignment()
+            .forEach(
+                topicPartition -> {
+                  long position = consumer.position(topicPartition);
+                  log.info(
+                      "After committing, partition: {}, position: {}",
+                      topicPartition.partition(),
+                      position);
+                });
       }
     }
   }

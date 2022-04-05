@@ -32,30 +32,39 @@ import org.apache.rocketmq.common.message.Message;
 public class TransactionProducer {
 
   public static void main(String[] args) throws MQClientException, InterruptedException {
-    //创建事务监听器
+    // 创建事务监听器
     TransactionListener transactionListener = new TransactionListenerImpl();
-    //创建消息生产者
+    // 创建消息生产者
     TransactionMQProducer producer = new TransactionMQProducer("TransactionProducer");
     // 设置NameServer的地址
     producer.setNamesrvAddr("localhost:9876");
-    //创建线程池
-    ExecutorService executorService = new ThreadPoolExecutor(2, 5, 100, TimeUnit.SECONDS,
-        new ArrayBlockingQueue<>(2000), r -> {
-      Thread thread = new Thread(r);
-      thread.setName("client-transaction-msg-check-thread");
-      return thread;
-    });
-    //设置生产者回查线程池
+    // 创建线程池
+    ExecutorService executorService =
+        new ThreadPoolExecutor(
+            2,
+            5,
+            100,
+            TimeUnit.SECONDS,
+            new ArrayBlockingQueue<>(2000),
+            r -> {
+              Thread thread = new Thread(r);
+              thread.setName("client-transaction-msg-check-thread");
+              return thread;
+            });
+    // 设置生产者回查线程池
     producer.setExecutorService(executorService);
-    //生产者设置监听器
+    // 生产者设置监听器
     producer.setTransactionListener(transactionListener);
-    //启动消息生产者
+    // 启动消息生产者
     producer.start();
-    String[] tags = new String[]{"TagA", "TagB", "TagC"};
+    String[] tags = new String[] {"TagA", "TagB", "TagC"};
     for (int i = 0; i < 3; i++) {
       try {
         Message msg =
-            new Message("TransactionTopic", tags[i % tags.length], "KEY" + i,
+            new Message(
+                "TransactionTopic",
+                tags[i % tags.length],
+                "KEY" + i,
                 ("Hello RocketMQ " + i).getBytes(StandardCharsets.UTF_8));
         SendResult sendResult = producer.sendMessageInTransaction(msg, null);
         log.info("{}", sendResult);

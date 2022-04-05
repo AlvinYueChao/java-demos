@@ -24,7 +24,9 @@ public class LogMsgBroadcaster {
   public LogMsgBroadcaster(InetSocketAddress remoteAddress) {
     this.group = new NioEventLoopGroup();
     this.bootstrap = new Bootstrap();
-    this.bootstrap.group(this.group).channel(NioDatagramChannel.class)
+    this.bootstrap
+        .group(this.group)
+        .channel(NioDatagramChannel.class)
         // 设置广播模式
         .option(ChannelOption.SO_BROADCAST, true)
         .handler(new LogMsgEncoder(remoteAddress));
@@ -53,7 +55,8 @@ public class LogMsgBroadcaster {
 
   public static void main(String[] args) {
     // 在相关协议中广播固定地址：255.255.255.255
-    LogMsgBroadcaster broadcaster = new LogMsgBroadcaster(new InetSocketAddress("255.255.255.255", LogConst.MONITOR_SIDE_PORT));
+    LogMsgBroadcaster broadcaster =
+        new LogMsgBroadcaster(new InetSocketAddress("255.255.255.255", LogConst.MONITOR_SIDE_PORT));
     try {
       broadcaster.run();
     } catch (InterruptedException e) {

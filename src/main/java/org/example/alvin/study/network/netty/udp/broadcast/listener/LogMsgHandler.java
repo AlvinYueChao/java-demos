@@ -13,7 +13,8 @@ import org.example.alvin.study.network.netty.udp.broadcast.LogMsg;
 public class LogMsgHandler extends SimpleChannelInboundHandler<LogMsg> {
 
   @Override
-  protected void channelRead0(ChannelHandlerContext channelHandlerContext, LogMsg logMsg) throws Exception {
+  protected void channelRead0(ChannelHandlerContext channelHandlerContext, LogMsg logMsg)
+      throws Exception {
     StringBuilder builder = new StringBuilder();
     builder.append(logMsg.getTime());
     builder.append(" [");

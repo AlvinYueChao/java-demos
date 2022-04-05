@@ -22,7 +22,9 @@ public class LogMsgEncoder extends MessageToMessageEncoder<LogMsg> {
   }
 
   @Override
-  protected void encode(ChannelHandlerContext channelHandlerContext, LogMsg logMsg, List<Object> list) throws Exception {
+  protected void encode(
+      ChannelHandlerContext channelHandlerContext, LogMsg logMsg, List<Object> list)
+      throws Exception {
     byte[] bytes = logMsg.getMsg().getBytes(StandardCharsets.UTF_8);
     ByteBuf buf = channelHandlerContext.alloc().buffer(8 * 2 + bytes.length + 1);
     buf.writeLong(logMsg.getTime());

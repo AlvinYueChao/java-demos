@@ -34,13 +34,14 @@ public class SqlFilterProducer {
 
     producer.start();
 
-    String[] tags = new String[]{"TagA", "TagB", "TagC"};
+    String[] tags = new String[] {"TagA", "TagB", "TagC"};
 
     for (int i = 0; i < 10; i++) {
-      Message msg = new Message("SqlFilterTest",
-          tags[i % tags.length],
-          ("Hello RocketMQ " + i).getBytes(StandardCharsets.UTF_8)
-      );
+      Message msg =
+          new Message(
+              "SqlFilterTest",
+              tags[i % tags.length],
+              ("Hello RocketMQ " + i).getBytes(StandardCharsets.UTF_8));
       // 设置一些属性
       msg.putUserProperty("a", String.valueOf(i));
 

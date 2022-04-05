@@ -27,7 +27,12 @@ public class UdpQuestionSide {
     bootstrap.group(group).channel(NioDatagramChannel.class).handler(new QuestionHandler());
     try {
       Channel channel = bootstrap.bind(0).sync().channel();
-      channel.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(QUESTION, StandardCharsets.UTF_8), new InetSocketAddress("127.0.0.1", port))).sync();
+      channel
+          .writeAndFlush(
+              new DatagramPacket(
+                  Unpooled.copiedBuffer(QUESTION, StandardCharsets.UTF_8),
+                  new InetSocketAddress("127.0.0.1", port)))
+          .sync();
       if (!channel.closeFuture().await(15000)) {
         log.info("Timeout when waiting closing...");
       }

@@ -18,13 +18,18 @@ public class ScheduledMessageConsumer {
     // 订阅Topics
     consumer.subscribe("ScheduledTopic", "*");
     // 注册消息监听者
-    consumer.registerMessageListener((MessageListenerConcurrently) (messages, context) -> {
-      for (MessageExt message : messages) {
-        // Print approximate delay time period
-        log.info("Receive message[msgId={}] {}ms later", message.getMsgId(), message.getStoreTimestamp() - message.getBornTimestamp());
-      }
-      return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-    });
+    consumer.registerMessageListener(
+        (MessageListenerConcurrently)
+            (messages, context) -> {
+              for (MessageExt message : messages) {
+                // Print approximate delay time period
+                log.info(
+                    "Receive message[msgId={}] {}ms later",
+                    message.getMsgId(),
+                    message.getStoreTimestamp() - message.getBornTimestamp());
+              }
+              return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            });
     // 启动消费者
     consumer.start();
   }

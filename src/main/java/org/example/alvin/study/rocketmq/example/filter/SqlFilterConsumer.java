@@ -33,14 +33,18 @@ public class SqlFilterConsumer {
     consumer.setNamesrvAddr(LocalConstant.NAME_SERVER_ADDR);
 
     // Don't forget to set enablePropertyFilter=true in broker
-    consumer.subscribe("SqlFilterTest",
-        MessageSelector.bySql("(TAGS is not null and TAGS in ('TagA', 'TagB'))" +
-            "and (a is not null and a between 0 and 3)"));
+    consumer.subscribe(
+        "SqlFilterTest",
+        MessageSelector.bySql(
+            "(TAGS is not null and TAGS in ('TagA', 'TagB'))"
+                + "and (a is not null and a between 0 and 3)"));
 
-    consumer.registerMessageListener((MessageListenerConcurrently) (msgs, context) -> {
-      log.info("{} Receive New Messages: {}", Thread.currentThread().getName(), msgs);
-      return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-    });
+    consumer.registerMessageListener(
+        (MessageListenerConcurrently)
+            (msgs, context) -> {
+              log.info("{} Receive New Messages: {}", Thread.currentThread().getName(), msgs);
+              return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+            });
 
     consumer.start();
     log.info("Consumer Started.");

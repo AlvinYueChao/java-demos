@@ -29,7 +29,7 @@ public class ByteBufferTest {
     ByteBuffer byteBuffer = ByteBuffer.allocate(8 + 4 + bytesLength);
     byteBuffer.putLong(user.getId());
 
-//    byteBuffer.putInt(stringLength);
+    //    byteBuffer.putInt(stringLength);
     byteBuffer.putInt(bytesLength);
     byteBuffer.put(nameBytes);
 
