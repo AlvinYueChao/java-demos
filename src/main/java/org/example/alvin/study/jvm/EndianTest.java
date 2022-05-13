@@ -1,13 +1,18 @@
 package org.example.alvin.study.jvm;
 
 import java.nio.ByteOrder;
+import jdk.internal.misc.Unsafe;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class EndianTest {
 
+  /**
+   * JVM options: --add-opens java.base/jdk.internal.misc=ALL-UNNAMED
+   * @param args
+   */
   public static void main(String[] args) {
-    var unsafe = UnsafeFactory.getUnsafeInstance();
+    Unsafe unsafe = Unsafe.getUnsafe();
     long a = unsafe.allocateMemory(8);
     try {
       unsafe.putLong(a, 0x0102030405060708L);
