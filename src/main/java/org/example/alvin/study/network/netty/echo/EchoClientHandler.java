@@ -12,7 +12,7 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
   @Override
   protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
     System.out.println("client Accept" + msg.toString(CharsetUtil.UTF_8));
-    // ctx.close();
+    // 长连接，短链接的区别，client和server谁关掉channel都可以
     ctx.close();
   }
 
