@@ -8,8 +8,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import java.net.InetSocketAddress;
+import lombok.extern.slf4j.Slf4j;
 
-/** 作者：Mark/Maoke 创建日期：2018/08/25 类说明：基于Netty的服务器 */
+@Slf4j
 public class EchoServer {
 
   private final int port;
@@ -21,9 +22,9 @@ public class EchoServer {
   public static void main(String[] args) throws InterruptedException {
     int port = 9999;
     EchoServer echoServer = new EchoServer(port);
-    System.out.println("服务器即将启动");
+    log.info("服务器即将启动");
     echoServer.start();
-    System.out.println("服务器关闭");
+    log.info("服务器关闭");
   }
 
   public void start() throws InterruptedException {

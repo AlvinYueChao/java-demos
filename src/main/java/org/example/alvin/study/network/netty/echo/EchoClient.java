@@ -8,8 +8,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import java.net.InetSocketAddress;
+import lombok.extern.slf4j.Slf4j;
 
-/** 作者：Mark/Maoke 创建日期：2018/08/26 类说明：基于Netty的客户端 */
+@Slf4j
 public class EchoClient {
 
   private final int port;

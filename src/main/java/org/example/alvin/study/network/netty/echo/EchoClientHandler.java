@@ -5,13 +5,15 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
   /*读取到网络数据后进行业务处理*/
   @Override
   protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
-    System.out.println("client Accept" + msg.toString(CharsetUtil.UTF_8));
+    log.info("client Accept " + msg.toString(CharsetUtil.UTF_8));
     // 长连接，短链接的区别，client和server谁关掉channel都可以
     ctx.close();
   }
