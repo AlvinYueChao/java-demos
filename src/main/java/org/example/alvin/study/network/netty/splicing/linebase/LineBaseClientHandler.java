@@ -19,7 +19,7 @@ public class LineBaseClientHandler extends SimpleChannelInboundHandler<ByteBuf> 
             + msg.toString(CharsetUtil.UTF_8)
             + "] and the counter is:"
             + counter.incrementAndGet());
-    ctx.close();
+//    ctx.close();
   }
 
   /*** 客户端被通知channel活跃后，做事*/

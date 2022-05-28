@@ -2,6 +2,7 @@ package org.example.alvin.study.network.netty.splicing.linebase;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -34,7 +35,7 @@ public class LineBaseServerHandler extends ChannelInboundHandlerAdapter {
   /*** 服务端读取完成网络数据后的处理*/
   @Override
   public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-    // ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+     ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
   }
 
   /*** 发生异常后的处理*/
