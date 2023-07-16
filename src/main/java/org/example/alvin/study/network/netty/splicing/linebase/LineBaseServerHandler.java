@@ -35,7 +35,7 @@ public class LineBaseServerHandler extends ChannelInboundHandlerAdapter {
   /*** 服务端读取完成网络数据后的处理*/
   @Override
   public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-     ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+    ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
   }
 
   /*** 发生异常后的处理*/

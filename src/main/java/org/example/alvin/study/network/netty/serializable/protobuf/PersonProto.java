@@ -5,55 +5,36 @@ package org.example.alvin.study.network.netty.serializable.protobuf;
 
 public final class PersonProto {
   private PersonProto() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-  }
-  public interface PersonOrBuilder extends
+
+  public static void registerAllExtensions(com.google.protobuf.ExtensionRegistry registry) {}
+
+  public interface PersonOrBuilder
+      extends
       // @@protoc_insertion_point(interface_extends:netty.Person)
       com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>required int32 id = 1;</code>
-     */
+    /** <code>required int32 id = 1;</code> */
     boolean hasId();
-    /**
-     * <code>required int32 id = 1;</code>
-     */
+    /** <code>required int32 id = 1;</code> */
     int getId();
 
-    /**
-     * <code>required string name = 2;</code>
-     */
+    /** <code>required string name = 2;</code> */
     boolean hasName();
-    /**
-     * <code>required string name = 2;</code>
-     */
+    /** <code>required string name = 2;</code> */
     String getName();
-    /**
-     * <code>required string name = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
+    /** <code>required string name = 2;</code> */
+    com.google.protobuf.ByteString getNameBytes();
 
-    /**
-     * <code>optional string email = 3;</code>
-     */
+    /** <code>optional string email = 3;</code> */
     boolean hasEmail();
-    /**
-     * <code>optional string email = 3;</code>
-     */
+    /** <code>optional string email = 3;</code> */
     String getEmail();
-    /**
-     * <code>optional string email = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getEmailBytes();
+    /** <code>optional string email = 3;</code> */
+    com.google.protobuf.ByteString getEmailBytes();
   }
-  /**
-   * Protobuf type {@code netty.Person}
-   */
-  public static final class Person extends
-      com.google.protobuf.GeneratedMessage implements
+  /** Protobuf type {@code netty.Person} */
+  public static final class Person extends com.google.protobuf.GeneratedMessage
+      implements
       // @@protoc_insertion_point(message_implements:netty.Person)
       PersonOrBuilder {
     // Use Person.newBuilder() to construct.
@@ -61,9 +42,13 @@ public final class PersonProto {
       super(builder);
       this.unknownFields = builder.getUnknownFields();
     }
-    private Person(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private Person(boolean noInit) {
+      this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
 
     private static final Person defaultInstance;
+
     public static Person getDefaultInstance() {
       return defaultInstance;
     }
@@ -73,11 +58,12 @@ public final class PersonProto {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
+
     @Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
+    public final com.google.protobuf.UnknownFieldSet getUnknownFields() {
       return this.unknownFields;
     }
+
     private Person(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -94,63 +80,66 @@ public final class PersonProto {
             case 0:
               done = true;
               break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
+            default:
+              {
+                if (!parseUnknownField(
+                    input, unknownFields,
+                    extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
               }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              id_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              name_ = bs;
-              break;
-            }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              email_ = bs;
-              break;
-            }
+            case 8:
+              {
+                bitField0_ |= 0x00000001;
+                id_ = input.readInt32();
+                break;
+              }
+            case 18:
+              {
+                com.google.protobuf.ByteString bs = input.readBytes();
+                bitField0_ |= 0x00000002;
+                name_ = bs;
+                break;
+              }
+            case 26:
+              {
+                com.google.protobuf.ByteString bs = input.readBytes();
+                bitField0_ |= 0x00000004;
+                email_ = bs;
+                break;
+              }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
+        throw new com.google.protobuf.InvalidProtocolBufferException(e.getMessage())
+            .setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+
+    public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
       return PersonProto.internal_static_netty_Person_descriptor;
     }
 
-    protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    protected FieldAccessorTable internalGetFieldAccessorTable() {
       return PersonProto.internal_static_netty_Person_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              Person.class, Builder.class);
+          .ensureFieldAccessorsInitialized(Person.class, Builder.class);
     }
 
     public static com.google.protobuf.Parser<Person> PARSER =
         new com.google.protobuf.AbstractParser<Person>() {
-      public Person parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Person(input, extensionRegistry);
-      }
-    };
+          public Person parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+            return new Person(input, extensionRegistry);
+          }
+        };
 
     @Override
     public com.google.protobuf.Parser<Person> getParserForType() {
@@ -160,37 +149,28 @@ public final class PersonProto {
     private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
     private int id_;
-    /**
-     * <code>required int32 id = 1;</code>
-     */
+    /** <code>required int32 id = 1;</code> */
     public boolean hasId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>required int32 id = 1;</code>
-     */
+    /** <code>required int32 id = 1;</code> */
     public int getId() {
       return id_;
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
     private Object name_;
-    /**
-     * <code>required string name = 2;</code>
-     */
+    /** <code>required string name = 2;</code> */
     public boolean hasName() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>required string name = 2;</code>
-     */
+    /** <code>required string name = 2;</code> */
     public String getName() {
       Object ref = name_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
+        com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           name_ = s;
@@ -198,16 +178,12 @@ public final class PersonProto {
         return s;
       }
     }
-    /**
-     * <code>required string name = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
+    /** <code>required string name = 2;</code> */
+    public com.google.protobuf.ByteString getNameBytes() {
       Object ref = name_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+        com.google.protobuf.ByteString b =
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         name_ = b;
         return b;
       } else {
@@ -217,22 +193,17 @@ public final class PersonProto {
 
     public static final int EMAIL_FIELD_NUMBER = 3;
     private Object email_;
-    /**
-     * <code>optional string email = 3;</code>
-     */
+    /** <code>optional string email = 3;</code> */
     public boolean hasEmail() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional string email = 3;</code>
-     */
+    /** <code>optional string email = 3;</code> */
     public String getEmail() {
       Object ref = email_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
+        com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           email_ = s;
@@ -240,16 +211,12 @@ public final class PersonProto {
         return s;
       }
     }
-    /**
-     * <code>optional string email = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getEmailBytes() {
+    /** <code>optional string email = 3;</code> */
+    public com.google.protobuf.ByteString getEmailBytes() {
       Object ref = email_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+        com.google.protobuf.ByteString b =
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
         email_ = b;
         return b;
       } else {
@@ -262,7 +229,9 @@ public final class PersonProto {
       name_ = "";
       email_ = "";
     }
+
     private byte memoizedIsInitialized = -1;
+
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -280,8 +249,7 @@ public final class PersonProto {
       return true;
     }
 
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+    public void writeTo(com.google.protobuf.CodedOutputStream output) throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeInt32(1, id_);
@@ -296,22 +264,20 @@ public final class PersonProto {
     }
 
     private int memoizedSerializedSize = -1;
+
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
 
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
+        size += com.google.protobuf.CodedOutputStream.computeInt32Size(1, id_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getNameBytes());
+        size += com.google.protobuf.CodedOutputStream.computeBytesSize(2, getNameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getEmailBytes());
+        size += com.google.protobuf.CodedOutputStream.computeBytesSize(3, getEmailBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -319,58 +285,60 @@ public final class PersonProto {
     }
 
     private static final long serialVersionUID = 0L;
+
     @Override
-    protected Object writeReplace()
-        throws java.io.ObjectStreamException {
+    protected Object writeReplace() throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
 
-    public static Person parseFrom(
-        com.google.protobuf.ByteString data)
+    public static Person parseFrom(com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static Person parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
+
     public static Person parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
+
     public static Person parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        byte[] data, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Person parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
+
+    public static Person parseFrom(java.io.InputStream input) throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
+
     public static Person parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static Person parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
+
+    public static Person parseDelimitedFrom(java.io.InputStream input) throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
+
     public static Person parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        java.io.InputStream input, com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static Person parseFrom(
-        com.google.protobuf.CodedInputStream input)
+
+    public static Person parseFrom(com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
+
     public static Person parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -378,36 +346,39 @@ public final class PersonProto {
       return PARSER.parseFrom(input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return Builder.create();
+    }
+
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
     public static Builder newBuilder(Person prototype) {
       return newBuilder().mergeFrom(prototype);
     }
-    public Builder toBuilder() { return newBuilder(this); }
+
+    public Builder toBuilder() {
+      return newBuilder(this);
+    }
 
     @Override
-    protected Builder newBuilderForType(
-        BuilderParent parent) {
+    protected Builder newBuilderForType(BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code netty.Person}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+    /** Protobuf type {@code netty.Person} */
+    public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder>
+        implements
         // @@protoc_insertion_point(builder_implements:netty.Person)
         PersonOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      public static final com.google.protobuf.Descriptors.Descriptor getDescriptor() {
         return PersonProto.internal_static_netty_Person_descriptor;
       }
 
-      protected FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      protected FieldAccessorTable internalGetFieldAccessorTable() {
         return PersonProto.internal_static_netty_Person_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                Person.class, Builder.class);
+            .ensureFieldAccessorsInitialized(Person.class, Builder.class);
       }
 
       // Construct using PersonProto.Person.newBuilder()
@@ -415,15 +386,15 @@ public final class PersonProto {
         maybeForceBuilderInitialization();
       }
 
-      private Builder(
-          BuilderParent parent) {
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
+
       private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {}
       }
+
       private static Builder create() {
         return new Builder();
       }
@@ -443,8 +414,7 @@ public final class PersonProto {
         return create().mergeFrom(buildPartial());
       }
 
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      public com.google.protobuf.Descriptors.Descriptor getDescriptorForType() {
         return PersonProto.internal_static_netty_Person_descriptor;
       }
 
@@ -483,7 +453,7 @@ public final class PersonProto {
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof Person) {
-          return mergeFrom((Person)other);
+          return mergeFrom((Person) other);
         } else {
           super.mergeFrom(other);
           return this;
@@ -511,11 +481,11 @@ public final class PersonProto {
 
       public final boolean isInitialized() {
         if (!hasId()) {
-          
+
           return false;
         }
         if (!hasName()) {
-          
+
           return false;
         }
         return true;
@@ -538,33 +508,26 @@ public final class PersonProto {
         }
         return this;
       }
+
       private int bitField0_;
 
-      private int id_ ;
-      /**
-       * <code>required int32 id = 1;</code>
-       */
+      private int id_;
+      /** <code>required int32 id = 1;</code> */
       public boolean hasId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>required int32 id = 1;</code>
-       */
+      /** <code>required int32 id = 1;</code> */
       public int getId() {
         return id_;
       }
-      /**
-       * <code>required int32 id = 1;</code>
-       */
+      /** <code>required int32 id = 1;</code> */
       public Builder setId(int value) {
         bitField0_ |= 0x00000001;
         id_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>required int32 id = 1;</code>
-       */
+      /** <code>required int32 id = 1;</code> */
       public Builder clearId() {
         bitField0_ = (bitField0_ & ~0x00000001);
         id_ = 0;
@@ -573,20 +536,15 @@ public final class PersonProto {
       }
 
       private Object name_ = "";
-      /**
-       * <code>required string name = 2;</code>
-       */
+      /** <code>required string name = 2;</code> */
       public boolean hasName() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>required string name = 2;</code>
-       */
+      /** <code>required string name = 2;</code> */
       public String getName() {
         Object ref = name_;
         if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
           String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             name_ = s;
@@ -596,73 +554,56 @@ public final class PersonProto {
           return (String) ref;
         }
       }
-      /**
-       * <code>required string name = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
+      /** <code>required string name = 2;</code> */
+      public com.google.protobuf.ByteString getNameBytes() {
         Object ref = name_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+          com.google.protobuf.ByteString b =
+              com.google.protobuf.ByteString.copyFromUtf8((String) ref);
           name_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-      /**
-       * <code>required string name = 2;</code>
-       */
-      public Builder setName(
-          String value) {
+      /** <code>required string name = 2;</code> */
+      public Builder setName(String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000002;
         name_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>required string name = 2;</code>
-       */
+      /** <code>required string name = 2;</code> */
       public Builder clearName() {
         bitField0_ = (bitField0_ & ~0x00000002);
         name_ = getDefaultInstance().getName();
         onChanged();
         return this;
       }
-      /**
-       * <code>required string name = 2;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
+      /** <code>required string name = 2;</code> */
+      public Builder setNameBytes(com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000002;
         name_ = value;
         onChanged();
         return this;
       }
 
       private Object email_ = "";
-      /**
-       * <code>optional string email = 3;</code>
-       */
+      /** <code>optional string email = 3;</code> */
       public boolean hasEmail() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional string email = 3;</code>
-       */
+      /** <code>optional string email = 3;</code> */
       public String getEmail() {
         Object ref = email_;
         if (!(ref instanceof String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
+          com.google.protobuf.ByteString bs = (com.google.protobuf.ByteString) ref;
           String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             email_ = s;
@@ -672,53 +613,41 @@ public final class PersonProto {
           return (String) ref;
         }
       }
-      /**
-       * <code>optional string email = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getEmailBytes() {
+      /** <code>optional string email = 3;</code> */
+      public com.google.protobuf.ByteString getEmailBytes() {
         Object ref = email_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+          com.google.protobuf.ByteString b =
+              com.google.protobuf.ByteString.copyFromUtf8((String) ref);
           email_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
-      /**
-       * <code>optional string email = 3;</code>
-       */
-      public Builder setEmail(
-          String value) {
+      /** <code>optional string email = 3;</code> */
+      public Builder setEmail(String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000004;
         email_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional string email = 3;</code>
-       */
+      /** <code>optional string email = 3;</code> */
       public Builder clearEmail() {
         bitField0_ = (bitField0_ & ~0x00000004);
         email_ = getDefaultInstance().getEmail();
         onChanged();
         return this;
       }
-      /**
-       * <code>optional string email = 3;</code>
-       */
-      public Builder setEmailBytes(
-          com.google.protobuf.ByteString value) {
+      /** <code>optional string email = 3;</code> */
+      public Builder setEmailBytes(com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000004;
         email_ = value;
         onChanged();
         return this;
@@ -736,42 +665,40 @@ public final class PersonProto {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_netty_Person_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_netty_Person_descriptor;
+  private static com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_netty_Person_fieldAccessorTable;
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
+  public static com.google.protobuf.Descriptors.FileDescriptor getDescriptor() {
     return descriptor;
   }
-  private static com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
+
+  private static com.google.protobuf.Descriptors.FileDescriptor descriptor;
+
   static {
     String[] descriptorData = {
-      "\n\014Person.proto\022\005netty\"1\n\006Person\022\n\n\002id\030\001 " +
-      "\002(\005\022\014\n\004name\030\002 \002(\t\022\r\n\005email\030\003 \001(\tB:\n+cn.e" +
-      "njoyedu.ch02.serializable.protobuf.demoB" +
-      "\013PersonProto"
+      "\n\014Person.proto\022\005netty\"1\n\006Person\022\n\n\002id\030\001 "
+          + "\002(\005\022\014\n\004name\030\002 \002(\t\022\r\n\005email\030\003 \001(\tB:\n+cn.e"
+          + "njoyedu.ch02.serializable.protobuf.demoB"
+          + "\013PersonProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
+        new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
           public com.google.protobuf.ExtensionRegistry assignDescriptors(
               com.google.protobuf.Descriptors.FileDescriptor root) {
             descriptor = root;
             return null;
           }
         };
-    com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
-    internal_static_netty_Person_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_netty_Person_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_netty_Person_descriptor,
-        new String[] { "Id", "Name", "Email", });
+    com.google.protobuf.Descriptors.FileDescriptor.internalBuildGeneratedFileFrom(
+        descriptorData, new com.google.protobuf.Descriptors.FileDescriptor[] {}, assigner);
+    internal_static_netty_Person_descriptor = getDescriptor().getMessageTypes().get(0);
+    internal_static_netty_Person_fieldAccessorTable =
+        new com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+            internal_static_netty_Person_descriptor,
+            new String[] {
+              "Id", "Name", "Email",
+            });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

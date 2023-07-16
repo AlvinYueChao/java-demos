@@ -9,6 +9,7 @@ public class EndianTest {
 
   /**
    * JVM options: --add-opens java.base/jdk.internal.misc=ALL-UNNAMED
+   *
    * @param args
    */
   public static void main(String[] args) {

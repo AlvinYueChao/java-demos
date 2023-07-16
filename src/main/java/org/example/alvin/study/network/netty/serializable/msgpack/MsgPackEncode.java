@@ -7,12 +7,10 @@ import org.msgpack.MessagePack;
 
 /*基于MessagePack的编码器，序列化*/
 public class MsgPackEncode extends MessageToByteEncoder<User> {
-    @Override
-    protected void encode(ChannelHandlerContext ctx, User msg, ByteBuf out)
-            throws Exception {
-        MessagePack messagePack = new MessagePack();
-        byte[] raw = messagePack.write(msg);
-        out.writeBytes(raw);
-
-    }
+  @Override
+  protected void encode(ChannelHandlerContext ctx, User msg, ByteBuf out) throws Exception {
+    MessagePack messagePack = new MessagePack();
+    byte[] raw = messagePack.write(msg);
+    out.writeBytes(raw);
+  }
 }
