@@ -1,8 +1,8 @@
 package org.example.alvin.study.jvm;
 
 import java.nio.ByteOrder;
-import jdk.internal.misc.Unsafe;
 import lombok.extern.slf4j.Slf4j;
+import sun.misc.Unsafe;
 
 @Slf4j
 public class EndianTest {
