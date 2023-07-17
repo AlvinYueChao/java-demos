@@ -1,29 +1,24 @@
 package org.example.alvin.algorithm.leetcode;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-/**
- * LCP 77
- */
+/** LCP 77 */
 public class RuneReserve {
   public static void main(String[] args) {
-    int[] runes = new int[]{1, 3, 5, 4, 1, 7};
+    int[] runes = new int[] {1, 3, 5, 4, 1, 7};
     System.out.println(runeReserve(runes));
-    runes = new int[]{1, 1, 3, 3, 2, 4};
+    runes = new int[] {1, 1, 3, 3, 2, 4};
     System.out.println(runeReserve(runes));
-    runes = new int[]{1, 3, 4, 7};
+    runes = new int[] {1, 3, 4, 7};
     System.out.println(runeReserve(runes));
-    runes = new int[]{};
+    runes = new int[] {};
     System.out.println(runeReserve(runes));
-    runes = new int[]{1};
+    runes = new int[] {1};
     System.out.println(runeReserve(runes));
   }
 
   private static int runeReserve(int[] runes) {
     // timeout
-//    List<Integer> sortedRunes = Arrays.stream(runes).sorted().boxed().collect(Collectors.toList());
+    //    List<Integer> sortedRunes =
+    // Arrays.stream(runes).sorted().boxed().collect(Collectors.toList());
     quickSort(runes, 0, runes.length - 1);
     int result = runes.length == 0 || runes.length == 1 ? runes.length : 0;
     for (int i = 0; i < runes.length - 1; i++) {
