@@ -5,20 +5,21 @@ import java.util.Arrays;
 /** LCP 72 */
 public class SupplyWagon {
   public static void main(String[] args) {
+    SupplyWagon instance = new SupplyWagon();
     int[] supplies = new int[] {1, 2};
-    System.out.println(Arrays.toString(supplyWagon(supplies)));
+    System.out.println(Arrays.toString(instance.supplyWagon(supplies)));
     supplies = new int[] {7, 3, 6, 1, 8};
-    System.out.println(Arrays.toString(supplyWagon(supplies)));
+    System.out.println(Arrays.toString(instance.supplyWagon(supplies)));
     supplies = new int[] {1, 3, 1, 5};
-    System.out.println(Arrays.toString(supplyWagon(supplies)));
+    System.out.println(Arrays.toString(instance.supplyWagon(supplies)));
   }
 
-  private static int[] supplyWagon(int[] supplies) {
+  private int[] supplyWagon(int[] supplies) {
     int stopSignal = supplies.length / 2;
     return supplyWagon(supplies, stopSignal);
   }
 
-  private static int[] supplyWagon(int[] supplies, int stopSignal) {
+  private int[] supplyWagon(int[] supplies, int stopSignal) {
     int[] newSupplies = new int[supplies.length - 1];
     int[] calculations = new int[supplies.length - 1];
     if (supplies.length == 2) {
