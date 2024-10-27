@@ -1,7 +1,7 @@
 package org.example.alvin.algorithm.leetcode;
 
 /** leetcode 面试题 17.16. 按摩师 */
-public class LCP17Dot16 {
+public class Interview17Dot16 {
   public static void main(String[] args) {
     int[] nums = {2, 1, 4, 5, 3, 1, 1, 3};
     System.out.println(massage2(nums));
