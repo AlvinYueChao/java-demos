@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm.leetcode;
+package org.example.alvin.algorithm.leetcode.array;
 
 import java.util.HashMap;
 import java.util.Map;

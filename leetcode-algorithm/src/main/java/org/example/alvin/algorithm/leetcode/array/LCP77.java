@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm.leetcode;
+package org.example.alvin.algorithm.leetcode.array;
 
 /** LCP 77 */
 public class LCP77 {

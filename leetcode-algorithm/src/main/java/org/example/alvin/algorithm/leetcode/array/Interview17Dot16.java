@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm.leetcode;
+package org.example.alvin.algorithm.leetcode.array;
 
 /** leetcode 面试题 17.16. 按摩师 */
 public class Interview17Dot16 {

@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm.leetcode;
+package org.example.alvin.algorithm.leetcode.array;
 
 /** leetcode 836 */
 public class LCP836 {
