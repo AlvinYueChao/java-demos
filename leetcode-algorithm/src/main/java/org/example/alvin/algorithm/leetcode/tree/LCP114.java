@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm.leetcode;
+package org.example.alvin.algorithm.leetcode.tree;
 
 /** leetcode 114 */
 public class LCP114 {
@@ -19,14 +19,5 @@ public class LCP114 {
       }
     }
   }
-
-  class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-      val = x;
-    }
-  }
 }
+
