@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm;
+package org.example.alvin.algorithm.interview;
 
 import java.util.ArrayList;
 import java.util.Arrays;

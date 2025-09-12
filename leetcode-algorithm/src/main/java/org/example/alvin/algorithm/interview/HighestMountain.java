@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm;
+package org.example.alvin.algorithm.interview;
 
 public class HighestMountain {
 

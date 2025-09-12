@@ -1,8 +1,8 @@
 package org.example.alvin.algorithm.leetcode.linkedlist;
 
 public class ListNode {
-  int val;
-  ListNode next;
+  public int val;
+  public ListNode next;
 
   ListNode() {
   }
@@ -16,7 +16,7 @@ public class ListNode {
     this.next = next;
   }
 
-  static ListNode convertAndGetHead(int[] arr) {
+  public static ListNode convertAndGetHead(int[] arr) {
     if (arr == null || arr.length == 0) {
       return null;
     }

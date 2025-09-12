@@ -1,6 +1,6 @@
 package org.example.alvin.algorithm.leetcode;
 
-import org.example.alvin.algorithm.MaxSubSequence;
+import org.example.alvin.algorithm.interview.MaxSubSequence;
 
 import java.util.Arrays;
 
