@@ -14,13 +14,13 @@ class Solution {
     Map<Integer, Integer> map = new HashMap<>();
     int ans = 0;
     for (int i = 0; i < nums.length; i++) {
-        int count = map.getOrDefault(nums[i], 0) + 1;
-        map.put(nums[i], count);
+      int count = map.getOrDefault(nums[i], 0) + 1;
+      map.put(nums[i], count);
     }
     for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-        if (entry.getValue() == 1) {
-            ans = entry.getKey();
-        }
+      if (entry.getValue() == 1) {
+        ans = entry.getKey();
+      }
     }
     return ans;
   }
@@ -29,5 +29,16 @@ class Solution {
     int[] nums = new int[] {2, 2, 3, 2, 4, 5, 4, 5, 5};
     int ans = new Solution().singleNumber(nums);
     System.out.println(ans);
+  }
+
+  private static void log2() {
+    double res = Math.log(11) / Math.log(2);
+    System.out.println(res);
+  }
+
+  private static void extendedIntMaxValue() {
+    int x = 2147483647;
+    int y = x * x;
+    System.out.println(y);
   }
 }
