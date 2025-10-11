@@ -9,7 +9,7 @@ import java.util.Map;
  * department (编号id, 部门名称name) 项目表 project (编号id, 项目名name, 归属部门dept_id) 写一句SQL: 统计各部门的项目数量 输出示例:
  * 部门名字 项目数量 销售部 3
  */
-class Solution {
+class Solution0928 {
   public int singleNumber(int[] nums) {
     Map<Integer, Integer> map = new HashMap<>();
     int ans = 0;
@@ -27,7 +27,7 @@ class Solution {
 
   public static void main(String[] args) {
     int[] nums = new int[] {2, 2, 3, 2, 4, 5, 4, 5, 5};
-    int ans = new Solution().singleNumber(nums);
+    int ans = new Solution0928().singleNumber(nums);
     System.out.println(ans);
   }
 
