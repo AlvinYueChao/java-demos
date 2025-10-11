@@ -1,11 +1,11 @@
 package org.example.alvin.algorithm;
 
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Arrays;
 
 public class Solution {
   public static void main(String[] args) {
-
+    int[][] arr = new int[3][3];
+    System.out.println(Arrays.deepToString(arr));
   }
 
   private static void charCalcTest() {
