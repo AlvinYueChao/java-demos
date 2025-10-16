@@ -1,11 +1,27 @@
 package org.example.alvin.algorithm;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Demos {
   public static void main(String[] args) {
-    arraySort();
+    stack2Deque();
+  }
+
+  private static void stack2Deque() {
+    Stack<Integer> stack = new Stack<>();
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+
+    Deque<Integer> stack1 = new ArrayDeque<>();
+    stack1.offer(1);
+    stack1.offer(2);
+    stack1.offer(3);
+
+    Integer top = stack.pop();
+    Integer top1 = stack1.pollLast();
+    System.out.println(top);
+    System.out.println(top.equals(top1));
   }
 
   private static void arraySort() {
