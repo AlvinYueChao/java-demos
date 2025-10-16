@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm.leetcode;
+package org.example.alvin.algorithm.leetcode.array;
 
 import org.example.alvin.algorithm.interview.MaxSubSequence;
 
