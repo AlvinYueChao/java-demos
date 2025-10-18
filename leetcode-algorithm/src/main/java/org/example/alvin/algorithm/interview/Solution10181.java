@@ -2,7 +2,6 @@ package org.example.alvin.algorithm.interview;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.LinkedList;
 
 /** interview on 2025-10-18-1 */
 public class Solution10181 {
