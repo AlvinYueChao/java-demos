@@ -1,5 +1,8 @@
 package org.example.alvin.algorithm.leetcode.linkedlist;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListNode {
   public int val;
   public ListNode next;
@@ -27,6 +30,16 @@ public class ListNode {
     }
 
     return head;
+  }
+
+  public static void printAsArray(ListNode head) {
+      ListNode curr = head;
+      List<Integer> list = new ArrayList<>();
+      while (curr != null) {
+        list.add(curr.val);
+        curr = curr.next;
+      }
+      System.out.println(list);
   }
 
   @Override
