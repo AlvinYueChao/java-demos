@@ -230,6 +230,37 @@ public class TreeNodeIteration {
 
       return resultList;
     }
+
+    List<Integer> levelOrderFlatWithNull(TreeNode root) {
+      List<Integer> resultList = new ArrayList<>();
+      Queue<TreeNode> queue = new LinkedList<>();
+      queue.offer(root);
+      while (!queue.isEmpty()) {
+        int levelSize = queue.size();
+
+        int nullCount = 0;
+        for (TreeNode treeNode : queue) {
+          if (treeNode == null){
+            nullCount++;
+          }
+        }
+        if(nullCount == levelSize) {
+          break;
+        }
+
+        for (int i = 0; i < levelSize; i++) {
+          TreeNode curr = queue.poll();
+          if (curr != null) {
+            resultList.add(curr.val);
+            queue.offer(curr.left);
+            queue.offer(curr.right);
+          } else {
+            resultList.add(null);
+          }
+        }
+      }
+      return resultList;
+    }
   }
 
   public static void main(String[] args) {
