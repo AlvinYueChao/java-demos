@@ -10,8 +10,8 @@
   <packaging>pom</packaging>
   <modules>
     <module>tuling-study</module>
-    <module>leetcode-algorithm</module>
-    <module>direct-java</module>
+    <module>algorithm</module>
+    <module>java-base</module>
   </modules>
 
   <properties>
