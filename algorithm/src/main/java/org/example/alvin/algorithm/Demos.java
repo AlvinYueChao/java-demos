@@ -4,7 +4,10 @@ import java.util.*;
 
 public class Demos {
   public static void main(String[] args) {
-    charCalcTest();
+    Set<List<Integer>> res = new HashSet<>();
+    res.add(Arrays.asList(1, 2, 3));
+    res.add(Arrays.asList(1, 2, 3));
+    System.out.println(res.size());
   }
 
   private static void stack2Deque() {
