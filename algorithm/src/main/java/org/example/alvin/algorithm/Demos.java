@@ -6,6 +6,7 @@ public class Demos {
   public static void main(String[] args) {
     Set<List<Integer>> res = new HashSet<>();
     res.add(Arrays.asList(1, 2, 3));
+    System.out.println(res.contains(Arrays.asList(1, 2, 3)));
     res.add(Arrays.asList(1, 2, 3));
     System.out.println(res.size());
   }

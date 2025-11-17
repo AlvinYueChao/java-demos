@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm.leetcode;
+package org.example.alvin.algorithm.leetcode.backtrack;
 
 import java.util.ArrayList;
 import java.util.List;
