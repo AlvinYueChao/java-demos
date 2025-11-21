@@ -4,9 +4,23 @@ import java.util.*;
 
 public class Demos {
   public static void main(String[] args) {
+      setContainsList();
+  }
+
+    /**
+     * false
+     */
+    private static void setContainsArrays() {
+        Set<int[]> used = new HashSet<>();
+        used.add(new int[] {1, 2});
+        System.out.println(used.contains(new int[] {1, 2}));
+    }
+
+    private static void setContainsList() {
     Set<List<Integer>> res = new HashSet<>();
     res.add(Arrays.asList(1, 2, 3));
     System.out.println(res.contains(Arrays.asList(1, 2, 3)));
+    System.out.println(res.contains(List.of(1, 2, 3)));
     res.add(Arrays.asList(1, 2, 3));
     System.out.println(res.size());
   }
