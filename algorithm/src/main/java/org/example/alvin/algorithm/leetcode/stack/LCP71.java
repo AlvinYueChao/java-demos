@@ -24,12 +24,12 @@ public class LCP71 {
   public String simplifyPath(String path) {
     Deque<String> deque = new ArrayDeque<>();
     String[] pathItems = path.split("/");
-    for(String pathItem : pathItems) {
-      if(pathItem.isEmpty() || pathItem.equals(".")) {
+    for (String pathItem : pathItems) {
+      if (pathItem.isEmpty() || pathItem.equals(".")) {
         continue;
       }
-      if(pathItem.equals("..")) {
-        if(!deque.isEmpty()) {
+      if (pathItem.equals("..")) {
+        if (!deque.isEmpty()) {
           deque.pollLast();
         }
       } else {
@@ -38,7 +38,7 @@ public class LCP71 {
     }
     StringBuilder sb = new StringBuilder("/");
     while (!deque.isEmpty()) {
-      if(sb.length() == 1) {
+      if (sb.length() == 1) {
         sb.append(deque.poll());
       } else {
         sb.append("/").append(deque.poll());

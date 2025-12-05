@@ -3,9 +3,7 @@ package org.example.alvin.algorithm.leetcode.graph;
 import java.util.*;
 
 public class LCP207 {
-  public static void main(String[] args) {
-
-  }
+  public static void main(String[] args) {}
 
   public boolean canFinish(int numCourses, int[][] prerequisites) {
     return bfsImpl(numCourses, prerequisites);

@@ -40,13 +40,14 @@ public class HighestMountain {
       }
 
       // 回退一步，因为当前点可能作为下一个山脉的起点
-//      i--;
+      //      i--;
     }
 
     return maxLen;
   }
+
   public static void main(String[] args) {
-//    int[] nums = {2, 5, 2, 1, 5};
+    //    int[] nums = {2, 5, 2, 1, 5};
     int[] nums = {2, 2, 2, 2, 1};
     System.out.println(new HighestMountain().maxLength(nums));
   }

@@ -1,7 +1,6 @@
 package org.example.alvin.algorithm.leetcode.array;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class LCP49 {
   public static void main(String[] args) {
@@ -26,7 +25,7 @@ public class LCP49 {
       map.get(key).add(str);
     }
 
-//    map.forEach((k, v) -> ans.add(v));
+    //    map.forEach((k, v) -> ans.add(v));
     ans.addAll(map.values());
 
     return ans;

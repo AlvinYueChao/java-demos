@@ -16,7 +16,7 @@ public class LCP206 {
     }
     ListNode tmp = pre;
     int[] result = new int[len];
-    for(int i = 0; i < len && tmp != null; i++) {
+    for (int i = 0; i < len && tmp != null; i++) {
       result[i] = tmp.val;
       tmp = tmp.next;
     }
@@ -26,7 +26,7 @@ public class LCP206 {
 
   public static void main(String[] args) {
     LCP206 test = new LCP206();
-    ListNode head = ListNode.convertAndGetHead(new int[]{1, 2, 3, 4, 5});
+    ListNode head = ListNode.convertAndGetHead(new int[] {1, 2, 3, 4, 5});
     ListNode result = test.reverseList(head);
   }
 }

@@ -42,7 +42,7 @@ public class CanBeBestClass {
     System.out.println("total " + total);
     System.out.println("中位数：" + sortedScores[(n - 1) / 2] + "条件：" + a);
     System.out.println("算术平均值：" + total / n + "条件：" + b);
-    System.out.println("去极值算术平均值：" + (total - min - max) / (n - 2)  + "条件：" + c);
+    System.out.println("去极值算术平均值：" + (total - min - max) / (n - 2) + "条件：" + c);
     return sortedScores[(n - 1) / 2] >= a || total / n >= b || (total - min - max) / (n - 2) >= c;
   }
 }

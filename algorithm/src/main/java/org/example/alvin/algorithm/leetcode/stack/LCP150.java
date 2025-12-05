@@ -1,9 +1,8 @@
 package org.example.alvin.algorithm.leetcode.stack;
 
-import org.apache.commons.lang3.time.StopWatch;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
+import org.apache.commons.lang3.time.StopWatch;
 
 public class LCP150 {
   public static void main(String[] args) {
@@ -24,11 +23,11 @@ public class LCP150 {
     for (int i = 0; i < tokens.length; i++) {
       String curr = tokens[i];
       /* 在算法中尽量避免使用正则表达式判断是否是数字，本题中时间消耗差距40倍
-      * 正则表达式用时消耗： 1072800 纳秒
-      * 排除法用时消耗： 26200 纳秒
-      * */
+       * 正则表达式用时消耗： 1072800 纳秒
+       * 排除法用时消耗： 26200 纳秒
+       * */
       boolean isNumber = isNumber(curr);
-//      boolean isNumber = isNumberByRegex(curr);
+      //      boolean isNumber = isNumberByRegex(curr);
       if (isNumber) {
         int currNum = Integer.parseInt(curr);
         stack.push(currNum);
@@ -41,7 +40,7 @@ public class LCP150 {
     }
     stopWatch.stop();
     System.out.println("排除法用时消耗： " + stopWatch.getNanoTime() + " 纳秒");
-//    System.out.println("正则表达式用时消耗： " + stopWatch.getNanoTime() + " 纳秒");
+    //    System.out.println("正则表达式用时消耗： " + stopWatch.getNanoTime() + " 纳秒");
     return stack.pop();
   }
 

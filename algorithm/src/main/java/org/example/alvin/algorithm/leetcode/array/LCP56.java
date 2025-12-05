@@ -24,7 +24,7 @@ public class LCP56 {
           tempAns.add(Arrays.asList(intervals[i][0], intervals[i][1]));
         } else {
           // 当前区间的终点大于结果中最后一个区间的终点，则有部分重合，更新结果中最后一个区间的终点
-          if(tempAns.getLast().get(1) < intervals[i][1]) {
+          if (tempAns.getLast().get(1) < intervals[i][1]) {
             tempAns.getLast().set(1, intervals[i][1]);
           }
           // 当前区间的终点小于等于结果中最后一个区间的终点，则完全重合，不需要任何操作
@@ -33,7 +33,7 @@ public class LCP56 {
       int[][] ans = new int[tempAns.size()][2];
       for (int i = 0; i < tempAns.size(); i++) {
         List<Integer> currentInterval = tempAns.get(i);
-        ans[i] = new int[] { currentInterval.get(0), currentInterval.get(1) };
+        ans[i] = new int[] {currentInterval.get(0), currentInterval.get(1)};
       }
       return ans;
     }

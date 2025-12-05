@@ -129,7 +129,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.11.0</version>
+        <version>3.14.1</version>
         <configuration>
           <source>21</source>
           <target>21</target>
@@ -138,7 +138,7 @@
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
-        <version>2.22.0</version>
+        <version>3.1.0</version>
         <configuration>
           <java>
             <includes>
@@ -146,7 +146,7 @@
             </includes>
             <googleJavaFormat>
               <!-- Optional, available versions: https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.google.googlejavaformat%22%20AND%20a%3A%22google-java-format%22 -->
-              <version>1.15.0</version>
+              <version>1.32.0</version>
               <!-- Optional, available versions: GOOGLE, AOSP  https://github.com/google/google-java-format/blob/master/core/src/main/java/com/google/googlejavaformat/java/JavaFormatterOptions.java -->
               <style>GOOGLE</style>
             </googleJavaFormat>

@@ -8,8 +8,7 @@ public class TreeNode {
   public TreeNode left;
   public TreeNode right;
 
-  public TreeNode() {
-  }
+  public TreeNode() {}
 
   public TreeNode(int val) {
     this.val = val;
@@ -33,7 +32,7 @@ public class TreeNode {
       while (!queue.isEmpty()) {
         TreeNode node = queue.poll();
         TreeNode left = null;
-        if(index < nums.length) {
+        if (index < nums.length) {
           Integer value = nums[index++];
           left = value != null ? new TreeNode(value) : null;
         }
@@ -42,7 +41,7 @@ public class TreeNode {
           queue.offer(left);
         }
         TreeNode right = null;
-        if(index < nums.length) {
+        if (index < nums.length) {
           Integer value = nums[index++];
           right = value != null ? new TreeNode(value) : null;
         }
@@ -56,7 +55,8 @@ public class TreeNode {
   }
 
   public static void printTreeNodeWithNull(TreeNode root) {
-    TreeNodeIteration.BinaryTreeTraversalBreadthFirst bfs = new TreeNodeIteration.BinaryTreeTraversalBreadthFirst();
+    TreeNodeIteration.BinaryTreeTraversalBreadthFirst bfs =
+        new TreeNodeIteration.BinaryTreeTraversalBreadthFirst();
     System.out.println(bfs.levelOrderFlatWithNull(root));
   }
 }

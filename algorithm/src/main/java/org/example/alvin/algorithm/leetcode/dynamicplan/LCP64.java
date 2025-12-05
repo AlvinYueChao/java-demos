@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LCP64 {
+
   public static void main(String[] args) {
     LCP64 lcp64 = new LCP64();
     System.out.println(lcp64.minPathSum(new int[][] {{1, 3, 1}, {1, 5, 1}, {4, 2, 1}}));

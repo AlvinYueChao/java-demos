@@ -8,14 +8,14 @@ public class Solution0927 {
     System.out.println("cat".hashCode());
   }
 
-    private static void test2() {
-        int[] sca = new int[128];
-        System.out.println((int)'e');
-        sca['e'] = 1;
-        System.out.println(Arrays.toString(sca));
-    }
+  private static void test2() {
+    int[] sca = new int[128];
+    System.out.println((int) 'e');
+    sca['e'] = 1;
+    System.out.println(Arrays.toString(sca));
+  }
 
-    private static void test1() {
+  private static void test1() {
     System.out.println((int) 'e');
   }
 }

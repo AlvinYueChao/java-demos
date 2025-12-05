@@ -19,7 +19,8 @@ public class LCP77 {
     return combinations;
   }
 
-  private void dfs(List<List<Integer>> combinations, List<Integer> combination, int startIndex, int n, int k) {
+  private void dfs(
+      List<List<Integer>> combinations, List<Integer> combination, int startIndex, int n, int k) {
     if (combination.size() + n - startIndex + 1 < k) {
       return;
     }

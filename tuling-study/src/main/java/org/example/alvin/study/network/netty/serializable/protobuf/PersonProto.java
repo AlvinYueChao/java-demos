@@ -15,23 +15,29 @@ public final class PersonProto {
 
     /** <code>required int32 id = 1;</code> */
     boolean hasId();
+
     /** <code>required int32 id = 1;</code> */
     int getId();
 
     /** <code>required string name = 2;</code> */
     boolean hasName();
+
     /** <code>required string name = 2;</code> */
     String getName();
+
     /** <code>required string name = 2;</code> */
     com.google.protobuf.ByteString getNameBytes();
 
     /** <code>optional string email = 3;</code> */
     boolean hasEmail();
+
     /** <code>optional string email = 3;</code> */
     String getEmail();
+
     /** <code>optional string email = 3;</code> */
     com.google.protobuf.ByteString getEmailBytes();
   }
+
   /** Protobuf type {@code netty.Person} */
   public static final class Person extends com.google.protobuf.GeneratedMessage
       implements
@@ -149,10 +155,12 @@ public final class PersonProto {
     private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
     private int id_;
+
     /** <code>required int32 id = 1;</code> */
     public boolean hasId() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
+
     /** <code>required int32 id = 1;</code> */
     public int getId() {
       return id_;
@@ -160,10 +168,12 @@ public final class PersonProto {
 
     public static final int NAME_FIELD_NUMBER = 2;
     private Object name_;
+
     /** <code>required string name = 2;</code> */
     public boolean hasName() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
+
     /** <code>required string name = 2;</code> */
     public String getName() {
       Object ref = name_;
@@ -178,6 +188,7 @@ public final class PersonProto {
         return s;
       }
     }
+
     /** <code>required string name = 2;</code> */
     public com.google.protobuf.ByteString getNameBytes() {
       Object ref = name_;
@@ -193,10 +204,12 @@ public final class PersonProto {
 
     public static final int EMAIL_FIELD_NUMBER = 3;
     private Object email_;
+
     /** <code>optional string email = 3;</code> */
     public boolean hasEmail() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
+
     /** <code>optional string email = 3;</code> */
     public String getEmail() {
       Object ref = email_;
@@ -211,6 +224,7 @@ public final class PersonProto {
         return s;
       }
     }
+
     /** <code>optional string email = 3;</code> */
     public com.google.protobuf.ByteString getEmailBytes() {
       Object ref = email_;
@@ -367,6 +381,7 @@ public final class PersonProto {
       Builder builder = new Builder(parent);
       return builder;
     }
+
     /** Protobuf type {@code netty.Person} */
     public static final class Builder extends com.google.protobuf.GeneratedMessage.Builder<Builder>
         implements
@@ -512,14 +527,17 @@ public final class PersonProto {
       private int bitField0_;
 
       private int id_;
+
       /** <code>required int32 id = 1;</code> */
       public boolean hasId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
+
       /** <code>required int32 id = 1;</code> */
       public int getId() {
         return id_;
       }
+
       /** <code>required int32 id = 1;</code> */
       public Builder setId(int value) {
         bitField0_ |= 0x00000001;
@@ -527,6 +545,7 @@ public final class PersonProto {
         onChanged();
         return this;
       }
+
       /** <code>required int32 id = 1;</code> */
       public Builder clearId() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -536,10 +555,12 @@ public final class PersonProto {
       }
 
       private Object name_ = "";
+
       /** <code>required string name = 2;</code> */
       public boolean hasName() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
+
       /** <code>required string name = 2;</code> */
       public String getName() {
         Object ref = name_;
@@ -554,6 +575,7 @@ public final class PersonProto {
           return (String) ref;
         }
       }
+
       /** <code>required string name = 2;</code> */
       public com.google.protobuf.ByteString getNameBytes() {
         Object ref = name_;
@@ -566,6 +588,7 @@ public final class PersonProto {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /** <code>required string name = 2;</code> */
       public Builder setName(String value) {
         if (value == null) {
@@ -576,6 +599,7 @@ public final class PersonProto {
         onChanged();
         return this;
       }
+
       /** <code>required string name = 2;</code> */
       public Builder clearName() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -583,6 +607,7 @@ public final class PersonProto {
         onChanged();
         return this;
       }
+
       /** <code>required string name = 2;</code> */
       public Builder setNameBytes(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -595,10 +620,12 @@ public final class PersonProto {
       }
 
       private Object email_ = "";
+
       /** <code>optional string email = 3;</code> */
       public boolean hasEmail() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
+
       /** <code>optional string email = 3;</code> */
       public String getEmail() {
         Object ref = email_;
@@ -613,6 +640,7 @@ public final class PersonProto {
           return (String) ref;
         }
       }
+
       /** <code>optional string email = 3;</code> */
       public com.google.protobuf.ByteString getEmailBytes() {
         Object ref = email_;
@@ -625,6 +653,7 @@ public final class PersonProto {
           return (com.google.protobuf.ByteString) ref;
         }
       }
+
       /** <code>optional string email = 3;</code> */
       public Builder setEmail(String value) {
         if (value == null) {
@@ -635,6 +664,7 @@ public final class PersonProto {
         onChanged();
         return this;
       }
+
       /** <code>optional string email = 3;</code> */
       public Builder clearEmail() {
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -642,6 +672,7 @@ public final class PersonProto {
         onChanged();
         return this;
       }
+
       /** <code>optional string email = 3;</code> */
       public Builder setEmailBytes(com.google.protobuf.ByteString value) {
         if (value == null) {

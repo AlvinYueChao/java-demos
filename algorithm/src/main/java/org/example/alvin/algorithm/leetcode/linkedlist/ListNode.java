@@ -7,8 +7,7 @@ public class ListNode {
   public int val;
   public ListNode next;
 
-  ListNode() {
-  }
+  ListNode() {}
 
   ListNode(int val) {
     this.val = val;
@@ -33,20 +32,17 @@ public class ListNode {
   }
 
   public static void printAsArray(ListNode head) {
-      ListNode curr = head;
-      List<Integer> list = new ArrayList<>();
-      while (curr != null) {
-        list.add(curr.val);
-        curr = curr.next;
-      }
-      System.out.println(list);
+    ListNode curr = head;
+    List<Integer> list = new ArrayList<>();
+    while (curr != null) {
+      list.add(curr.val);
+      curr = curr.next;
+    }
+    System.out.println(list);
   }
 
   @Override
   public String toString() {
-    return "ListNode{" +
-      "val=" + val +
-      ", next=" + next +
-      '}';
+    return "ListNode{" + "val=" + val + ", next=" + next + '}';
   }
 }

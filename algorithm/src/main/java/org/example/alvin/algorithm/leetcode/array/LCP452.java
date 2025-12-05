@@ -5,7 +5,7 @@ import java.util.Comparator;
 
 public class LCP452 {
   public static void main(String[] args) {
-    int[][] points = new int[][]{{-2147483646, -2147483645}, {2147483646, 2147483647}};
+    int[][] points = new int[][] {{-2147483646, -2147483645}, {2147483646, 2147483647}};
     LCP452 lcp452 = new LCP452();
     int result = lcp452.findMinArrowShots(points);
     System.out.println(result);
