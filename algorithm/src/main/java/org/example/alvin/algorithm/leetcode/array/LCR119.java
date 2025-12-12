@@ -1,8 +1,7 @@
 package org.example.alvin.algorithm.leetcode.array;
 
-import org.example.alvin.algorithm.interview.MaxSubSequence;
-
 import java.util.Arrays;
+import org.example.alvin.algorithm.interview.MaxSubSequence;
 
 public class LCR119 {
   public int longestConsecutive(int[] nums) {

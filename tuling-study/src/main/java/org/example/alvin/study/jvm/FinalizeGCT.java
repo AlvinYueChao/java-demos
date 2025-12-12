@@ -1,25 +1,24 @@
 package org.example.alvin.study.jvm;
 
 import java.lang.ref.Cleaner;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class FinalizeGCT {
   public static FinalizeGCT instance = null;
-  
+
   // 创建一个静态的Cleaner实例
   private static final Cleaner cleaner = Cleaner.create();
-  
+
   // 保存Cleaner.Cleanable引用，防止被过早清理
   private final Cleaner.Cleanable cleanable;
-  
+
   // 内部状态类，用于清理操作
   private static class State implements Runnable {
     private String name;
-    
+
     State(String name) {
       this.name = name;
     }
-    
+
     @Override
     public void run() {
       System.out.println(name + ": finalize method executed");
@@ -77,7 +76,7 @@ public class FinalizeGCT {
    * <p>line20 线程断点debug结果： Finalizer: finalize method executed main: I'm still alive
    *
    * <p>结果分析： finalize() 方法由Finalizer线程异步执行，其优先级低于其他代码 finalize() 方法只能被执行一次
-   * 
+   *
    * <p>更新说明： 使用Java 9引入的Cleaner API替代已弃用的finalize()方法
    */
 }

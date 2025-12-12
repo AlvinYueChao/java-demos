@@ -2,12 +2,13 @@ package org.example.alvin.algorithm.leetcode.graph;
 
 public class LCP200 {
   public static void main(String[] args) {
-    char[][] grid = new char[][]{
-      {'1', '1', '1', '1', '0'},
-      {'1', '1', '0', '1', '0'},
-      {'1', '1', '0', '0', '0'},
-      {'0', '0', '0', '0', '0'}
-    };
+    char[][] grid =
+        new char[][] {
+          {'1', '1', '1', '1', '0'},
+          {'1', '1', '0', '1', '0'},
+          {'1', '1', '0', '0', '0'},
+          {'0', '0', '0', '0', '0'}
+        };
     LCP200 lcp200 = new LCP200();
     System.out.println(lcp200.numIslands(grid));
   }
@@ -31,7 +32,6 @@ public class LCP200 {
   }
 
   /**
-   *
    * @param grid
    * @param r
    * @param c

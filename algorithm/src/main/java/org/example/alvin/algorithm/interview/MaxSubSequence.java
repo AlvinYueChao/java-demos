@@ -45,7 +45,7 @@ public class MaxSubSequence {
   }
 
   public static void main(String[] args) {
-//    int[] nums = {3, 1, 5, 4, 2, 7, 9, 8, 11};
+    //    int[] nums = {3, 1, 5, 4, 2, 7, 9, 8, 11};
     int[] nums = {3, 1, 2, 2, 7, 8, 9, 10};
     System.out.println(new MaxSubSequence().longestConsecutive(nums));
   }

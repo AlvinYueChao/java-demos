@@ -6,8 +6,46 @@ import java.util.List;
 
 public class LCP155 {
   public static void main(String[] args) {
-    String[] operations = {"MinStack", "push", "push", "push", "top", "pop", "getMin", "pop", "getMin", "pop", "push", "top", "getMin", "push", "top", "getMin", "pop", "getMin"};
-    int[][] inputs = {{}, {2147483646}, {2147483646}, {2147483647}, {}, {}, {}, {}, {}, {}, {2147483647}, {}, {}, {-2147483648}, {}, {}, {}, {}};
+    String[] operations = {
+      "MinStack",
+      "push",
+      "push",
+      "push",
+      "top",
+      "pop",
+      "getMin",
+      "pop",
+      "getMin",
+      "pop",
+      "push",
+      "top",
+      "getMin",
+      "push",
+      "top",
+      "getMin",
+      "pop",
+      "getMin"
+    };
+    int[][] inputs = {
+      {},
+      {2147483646},
+      {2147483646},
+      {2147483647},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {2147483647},
+      {},
+      {},
+      {-2147483648},
+      {},
+      {},
+      {},
+      {}
+    };
     List<Integer> results = new ArrayList<>();
     MinStack instance = null;
     for (int i = 0; i < operations.length; i++) {
@@ -87,8 +125,7 @@ public class LCP155 {
       int val;
       int currentMinVal;
 
-      Node() {
-      }
+      Node() {}
     }
   }
 }

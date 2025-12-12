@@ -18,7 +18,8 @@ public class LCP46 {
     return results;
   }
 
-  private void backtrack(List<List<Integer>> results, List<Integer> result, int[] nums, boolean[] visited) {
+  private void backtrack(
+      List<List<Integer>> results, List<Integer> result, int[] nums, boolean[] visited) {
     if (result.size() == nums.length) {
       results.add(new ArrayList<>(result));
       return;

@@ -7,7 +7,7 @@ public class LCP399 {
     List<List<String>> equations = new ArrayList<>();
     equations.add(List.of("a", "b"));
     equations.add(List.of("b", "c"));
-    double[] values = new double[]{2.0d, 3.0d};
+    double[] values = new double[] {2.0d, 3.0d};
     List<List<String>> queries = new ArrayList<>();
     queries.add(List.of("a", "c"));
     queries.add(List.of("b", "a"));
@@ -18,7 +18,8 @@ public class LCP399 {
     System.out.println(Arrays.toString(lcp399.calcEquation(equations, values, queries)));
   }
 
-  public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
+  public double[] calcEquation(
+      List<List<String>> equations, double[] values, List<List<String>> queries) {
     int n = equations.size();
     UnionFind uf = new UnionFind(n * 2);
     Map<String, Integer> map = new HashMap<>();

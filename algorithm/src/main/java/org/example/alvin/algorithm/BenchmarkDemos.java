@@ -1,13 +1,12 @@
 package org.example.alvin.algorithm;
 
+import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
-
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
@@ -46,9 +45,7 @@ public class BenchmarkDemos {
   }
 
   public static void main(String[] args) throws RunnerException {
-    Options opt = new OptionsBuilder()
-      .include(BenchmarkDemos.class.getSimpleName())
-      .build();
+    Options opt = new OptionsBuilder().include(BenchmarkDemos.class.getSimpleName()).build();
     new Runner(opt).run();
   }
 }

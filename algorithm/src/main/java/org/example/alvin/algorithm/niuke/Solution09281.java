@@ -24,46 +24,46 @@ public class Solution09281 {
   }
 
   public static int findMin(int[] nums) {
-      if (nums == null || nums.length < 3) {
-          return -1;
+    if (nums == null || nums.length < 3) {
+      return -1;
+    }
+
+    int n = nums.length;
+    int[] leftSmaller = new int[n];
+
+    // -1 表示当前元素左侧没有较小元素
+    Arrays.fill(leftSmaller, -1);
+
+    Stack<Integer> stack = new Stack<>();
+    for (int i = 0; i < n; i++) {
+      while (!stack.isEmpty() && nums[stack.peek()] >= nums[i]) {
+        stack.pop();
+      }
+      leftSmaller[i] = stack.isEmpty() ? -1 : stack.peek();
+      stack.push(i);
+    }
+
+    // 清空栈，用于计算右侧最近较小元素
+    stack.clear();
+    int minDistance = Integer.MAX_VALUE;
+
+    // 计算右侧最近较小元素并同时计算结果
+    int[] rightSmaller = new int[n];
+    Arrays.fill(rightSmaller, -1);
+
+    for (int i = n - 1; i >= 0; i--) {
+      while (!stack.isEmpty() && nums[stack.peek()] >= nums[i]) {
+        stack.pop();
+      }
+      rightSmaller[i] = stack.isEmpty() ? -1 : stack.peek();
+
+      // 如果当前点可以作为波峰，更新最小距离
+      if (leftSmaller[i] != -1 && rightSmaller[i] != -1) {
+        minDistance = Math.min(minDistance, rightSmaller[i] - leftSmaller[i]);
       }
 
-      int n = nums.length;
-      int[] leftSmaller = new int[n];
-
-      // -1 表示当前元素左侧没有较小元素
-      Arrays.fill(leftSmaller, -1);
-
-      Stack<Integer> stack = new Stack<>();
-      for (int i = 0; i < n; i++) {
-          while (!stack.isEmpty() && nums[stack.peek()] >= nums[i]) {
-              stack.pop();
-          }
-          leftSmaller[i] = stack.isEmpty() ? -1 : stack.peek();
-          stack.push(i);
-      }
-
-      // 清空栈，用于计算右侧最近较小元素
-      stack.clear();
-      int minDistance = Integer.MAX_VALUE;
-
-      // 计算右侧最近较小元素并同时计算结果
-      int[] rightSmaller = new int[n];
-      Arrays.fill(rightSmaller, -1);
-
-      for (int i = n - 1; i >= 0; i--) {
-          while (!stack.isEmpty() && nums[stack.peek()] >= nums[i]) {
-              stack.pop();
-          }
-          rightSmaller[i] = stack.isEmpty() ? -1 : stack.peek();
-
-          // 如果当前点可以作为波峰，更新最小距离
-          if (leftSmaller[i] != -1 && rightSmaller[i] != -1) {
-              minDistance = Math.min(minDistance, rightSmaller[i] - leftSmaller[i]);
-          }
-
-          stack.push(i);
-      }
-      return minDistance == Integer.MAX_VALUE ? -1 : minDistance;
+      stack.push(i);
+    }
+    return minDistance == Integer.MAX_VALUE ? -1 : minDistance;
   }
 }

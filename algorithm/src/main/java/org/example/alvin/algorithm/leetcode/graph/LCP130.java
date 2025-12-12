@@ -2,12 +2,13 @@ package org.example.alvin.algorithm.leetcode.graph;
 
 public class LCP130 {
   public static void main(String[] args) {
-    char[][] board = new char[][]{
-      {'X', 'X', 'X', 'X'},
-      {'X', 'O', 'O', 'X'},
-      {'X', 'X', 'O', 'X'},
-      {'X', 'O', 'X', 'X'}
-    };
+    char[][] board =
+        new char[][] {
+          {'X', 'X', 'X', 'X'},
+          {'X', 'O', 'O', 'X'},
+          {'X', 'X', 'O', 'X'},
+          {'X', 'O', 'X', 'X'}
+        };
     LCP130 lcp130 = new LCP130();
     lcp130.solve(board);
   }

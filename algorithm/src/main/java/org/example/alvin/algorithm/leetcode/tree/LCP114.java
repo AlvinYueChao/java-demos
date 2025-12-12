@@ -3,12 +3,10 @@ package org.example.alvin.algorithm.leetcode.tree;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-/**
- * leetcode 114
- */
+/** leetcode 114 */
 public class LCP114 {
   public static void main(String[] args) {
-    Integer[] nums = new Integer[]{1, 2, 5, 3, 4, null, 6};
+    Integer[] nums = new Integer[] {1, 2, 5, 3, 4, null, 6};
     TreeNode root = TreeNode.convertToTreeNode(nums);
     LCP114 lcp114 = new LCP114();
     lcp114.flatten2(root);
@@ -50,4 +48,3 @@ public class LCP114 {
     }
   }
 }
-
