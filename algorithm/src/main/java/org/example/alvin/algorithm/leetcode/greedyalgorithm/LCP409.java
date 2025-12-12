@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm.leetcode;
+package org.example.alvin.algorithm.leetcode.greedyalgorithm;
 
 /** leetcode 409 */
 public class LCP409 {

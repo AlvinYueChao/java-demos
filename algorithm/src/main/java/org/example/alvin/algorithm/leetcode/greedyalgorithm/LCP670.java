@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm.leetcode;
+package org.example.alvin.algorithm.leetcode.greedyalgorithm;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm.leetcode;
+package org.example.alvin.algorithm.leetcode.dynamicplanning;
 
 import java.util.HashMap;
 import java.util.Map;
