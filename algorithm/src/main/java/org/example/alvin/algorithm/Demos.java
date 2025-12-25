@@ -4,7 +4,8 @@ import java.util.*;
 
 public class Demos {
   public static void main(String[] args) {
-    setContainsList();
+    List<String> sa = List.of("a", "b", "c");
+    System.out.println(sa.contains("b"));
   }
 
   /** false */
