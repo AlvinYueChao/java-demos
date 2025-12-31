@@ -1,4 +1,4 @@
-package org.example.alvin.algorithm.leetcode.dynamicplan;
+package org.example.alvin.algorithm.leetcode.dynamicplanning;
 
 import java.util.ArrayList;
 import java.util.List;
