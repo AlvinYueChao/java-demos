@@ -4,9 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class LCP224 {
-  public static void main(String[] args) {
-
-  }
+  public static void main(String[] args) {}
 
   public int calculate(String s) {
     // 当前层级的计算结果

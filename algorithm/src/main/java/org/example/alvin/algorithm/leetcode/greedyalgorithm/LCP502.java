@@ -5,9 +5,7 @@ import java.util.PriorityQueue;
 
 public class LCP502 {
 
-  public static void main(String[] args) {
-
-  }
+  public static void main(String[] args) {}
 
   public int findMaximizedCapital(int k, int w, int[] profits, int[] capital) {
     int n = profits.length;

@@ -1,9 +1,7 @@
 package org.example.alvin.algorithm.leetcode.linkedlist;
 
 public class LCP25 {
-  public static void main(String[] args) {
-
-  }
+  public static void main(String[] args) {}
 
   public ListNode reverseKGroup(ListNode head, int k) {
     ListNode hair = new ListNode(0);
@@ -40,6 +38,6 @@ public class LCP25 {
       pre = curr;
       curr = tmp;
     }
-    return new ListNode[]{pre, head};
+    return new ListNode[] {pre, head};
   }
 }
